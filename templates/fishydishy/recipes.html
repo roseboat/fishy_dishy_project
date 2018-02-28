@@ -1,0 +1,35 @@
+{% extends 'fishydishy/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	Recipes
+{% endblock %}
+
+{% block body_block %}
+
+	<h1>Browse recipes</h1>
+
+	<div>
+		
+		
+			{% for Recipe in recipeList %}
+				<li>{{ Recipe.name }}
+				<ul>
+					<li>Fish: {{ Recipe.fish }}</li>
+					<li>{{ Recipe.user }}</li>
+				</ul>
+				</li>
+			{% endfor %}
+		
+	
+	</div>
+
+	
+
+
+
+	
+
+	<p>visits: 1</p>
+	
+	{% endblock %}

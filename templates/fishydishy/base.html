@@ -143,7 +143,7 @@ height: auto;
 			<ul class="nav navbar-nav text-center">
 				<li><a href="{% url 'fish_map' %}" style="font-size: 25px;">FishMonger</a></li>
 				<li><a href="{% url 'fish_finder' %}" style="font-size: 25px;">FishFinder</a></li>
-				<li><a href="" style="font-size: 25px;">Recipes</a></li>
+				<li><a href="{% url 'recipes' %}" style="font-size: 25px;">Recipes</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'add_recipe' %}" style="font-size: 25px;">Add a Recipe</a></li>
                 <li><a href="{% url 'logout' %}?next=/fishydishy/" style="font-size: 25px;">Logout</a></li>
