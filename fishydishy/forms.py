@@ -70,3 +70,6 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ('title', 'description', 'ingredients', 'method', 'fish', 'serves')
+
+class FeedbackForm(forms.Form):
+    subject = forms.CharField(label='subject', max_length=100)

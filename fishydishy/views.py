@@ -9,7 +9,7 @@ from fishydishy.models import Fish
 from fishydishy.models import Recipe
 from fishydishy.models import Review
 from fishydishy.forms import CategoryForm
-from fishydishy.forms import PageForm
+from fishydishy.forms import PageForm, FeedbackForm
 from fishydishy.forms import UserForm, UserProfileForm, RecipeForm
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
@@ -333,3 +333,14 @@ def visitor_cookie_handler(request):
 
     # Update/set the visits cookie
     request.session['visits'] = visits
+
+def contact(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            print("YA DID IT")
+            return HttpResponseRedirect('/index/')
+    else:
+        form = FeedbackForm()
+    response = render(request, 'fishydishy/contact.html', {'form':form})
+    return response
