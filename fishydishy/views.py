@@ -75,6 +75,14 @@ def fish_map(request):
     response = render(request, 'fishydishy/fish_map.html')
     return response
 
+def recipes(request):
+    recipe_list = Recipe.objects.order_by('avgRating')
+    context_dict = {'recipeList': recipe_list}
+    
+    response = render(request, 'fishydishy/recipes.html', context=context_dict)
+    
+    
+    return response
 
 def show_category(request, category_name_slug):
     # create a context dictionary which we can pass to template rendering engine
