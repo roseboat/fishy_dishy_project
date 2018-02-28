@@ -1,0 +1,36 @@
+{% extends 'fishydishy/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	Find a Fish!
+{% endblock %}
+
+{% block body_block %}
+
+<body onload="getLocation()">
+	<h1>Find your Favourite Fish</h1>
+
+	<div>
+		
+		
+			{% for Fish in fishList %}
+				<li>{{ Fish.name }}
+				<ul>
+					<li>Sustainability rating: {{ Fish.sustainability }}</li>
+					<li><img src="{% static "/images/{{ Fish.name }}.jpg" %}" alt="Picture of {{ Fish.name }}" /></li>
+				</ul>
+				</li>
+			{% endfor %}
+		
+	
+	</div>
+
+	
+
+
+
+	
+
+	<p>visits: 1</p>
+	
+	{% endblock %}
