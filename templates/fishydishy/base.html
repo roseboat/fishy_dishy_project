@@ -85,7 +85,11 @@ body {
 	height: 100%
 }
 
-
+.card-img-top {
+	width: 100%;
+	height: 15vw;
+	object-fit: cover;
+}
 
 
 
@@ -104,7 +108,6 @@ body {
 h1 {
 	
 	font-weight: 700;
-
 	font-size: 45px;
 }
 
@@ -120,10 +123,13 @@ h2 {
 
 h3 {
 	font-weight: 700;
-
-font-size: 25px;
+	font-size: 25px;
 }
 
+h4 {
+	font-weight: 700;
+	font-size: 25px;
+}
 
 
 .row.content {
@@ -187,7 +193,7 @@ height: auto;
 <a href="{% url 'about' %}">About</a>
 </div>
 <div class="col-md-4">
-	<a href="" style="font-size: 25px;">Contact</a>
+	<a href="{% url 'contact' %}" style="font-size: 25px;">Contact</a>
 </div>
 <div class="col-md-4">
 	<a href="" style="font-size: 25px;">SiteMap</a>

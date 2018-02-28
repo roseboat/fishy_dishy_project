@@ -35,4 +35,6 @@ urlpatterns = [
     url(r'^logout/$',
         views.user_logout,
         name='logout'),
+
+    url(r'^contact/$', views.contact, name='contact'),
 ]

@@ -60,13 +60,17 @@ class UserProfileForm(forms.ModelForm):
         fields = ('website', 'picture')
 
 class RecipeForm(forms.ModelForm):
-    title = forms.CharField(max_length=300, help_text="Give your recipe a title:")
-    description = forms.CharField(max_length=2000, help_text="Introduce your recipe to the world!")
-    ingredients = forms.CharField(max_length=125, help_text="Enter an ingredient")
-    method = forms.CharField(max_length=300, help_text="Enter your method")
-    fish = forms.CharField(max_length=125, help_text="What fish is in it?")
+    title = forms.CharField(max_length=300, help_text="Give your recipe a title:", widget=forms.Textarea(attrs={'cols': 60, 'rows': 1}))
+    description = forms.CharField(max_length=2000, help_text="Introduce your recipe to the world!", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
+    ingredients = forms.CharField(max_length=125, help_text="Enter your ingredients", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
+    method = forms.CharField(max_length=300, help_text="Enter your method", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
+    fish = forms.CharField(max_length=125, help_text="What fish is in it?", required=True)
     serves = forms.CharField(max_length=125, help_text="How many servings?")
+    user = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         model = Recipe
         fields = ('title', 'description', 'ingredients', 'method', 'fish', 'serves')
+
+class FeedbackForm(forms.Form):
+    subject = forms.CharField(label='subject', max_length=100)

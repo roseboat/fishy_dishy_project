@@ -34,4 +34,5 @@ urlpatterns = [
         MyRegistrationView.as_view(),
             name='registration_register'),
     url(r'^accounts/', include('registration.backends.simple.urls')), #added for user authentication chap11
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
