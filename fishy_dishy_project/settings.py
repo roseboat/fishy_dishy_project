@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fishydishy',
-    'registration', # added for user authentication
+    
 ]
 
 
@@ -113,7 +113,7 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )
 
-LOGIN_URL = '/accounts/login/' #changed for user authentication chapter 11
+LOGIN_URL = '/fishydishy/login/' #changed for user authentication chapter 11
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -127,11 +127,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-REGISTRATION_OPEN = True
+"""REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/fishydishy/'
-LOGIN_URL = '/accounts/login'
+LOGIN_URL = '/accounts/login' """
 
 
 MEDIA_ROOT = MEDIA_DIR
