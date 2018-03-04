@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from fishydishy.models import Page, Category, UserProfile, Recipe
+from fishydishy.models import Page, Category, UserProfile, Recipe, Fish
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
@@ -64,6 +64,7 @@ class RecipeForm(forms.ModelForm):
     description = forms.CharField(max_length=2000, help_text="Introduce your recipe to the world!", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
     ingredients = forms.CharField(max_length=125, help_text="Enter your ingredients", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
     method = forms.CharField(max_length=300, help_text="Enter your method", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
+    #fish = forms.ModelMultipleChoiceField(queryset=Fish.objects.all())
     fish = forms.CharField(max_length=125, help_text="What fish is in it?", required=True)
     serves = forms.CharField(max_length=125, help_text="How many servings?")
     user = forms.CharField(widget=forms.HiddenInput())
