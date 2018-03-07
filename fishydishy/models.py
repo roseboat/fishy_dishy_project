@@ -52,15 +52,18 @@ class Fish(models.Model):
 
 
 class Recipe(models.Model):
-    user = models.ForeignKey(User)
-    name = models.CharField(max_length=128, unique=True)
+    #user = models.ForeignKey(User)
+    name = models.CharField(max_length=128, null=True)
+    description = models.CharField(max_length=1280, null=True)
+    ingredients = models.CharField(max_length=1280, null=True)
+    method = models.CharField(max_length=9999, null=True)
     fish = models.ForeignKey(Fish)
-    cost = models.FloatField(blank=True)
-    time = models.FloatField
-    serves = models.IntegerField(blank=True)
-    avgRating = models.FloatField(blank=True)
-    slug = models.SlugField(unique=True, blank=True)
-    image = models.ImageField(upload_to='recipe_images', blank=True)
+    cost = models.FloatField(null=True)
+    time = models.FloatField(default=1)
+    serves = models.IntegerField(null=True)
+    avgRating = models.FloatField(null=True)
+    slug = models.SlugField(null=True, blank=True)
+    image = models.ImageField(upload_to='recipe_images', null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
