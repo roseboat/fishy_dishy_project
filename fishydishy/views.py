@@ -63,8 +63,9 @@ def about(request):
 
 
 def fish_finder(request):
-    fish_list = Fish.objects.order_by('name')[:5]
+    fish_list = Fish.objects.order_by('name')
     context_dict = {'fishList': fish_list}
+
 
     response = render(request, 'fishydishy/fish_finder.html', context=context_dict)
 
