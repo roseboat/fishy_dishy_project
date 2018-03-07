@@ -37,4 +37,8 @@ urlpatterns = [
         name='logout'),
 
     url(r'^contact/$', views.contact, name='contact'),
+
+    url(r'^site_map/$',
+        views.site_map,
+        name='site_map'),
 ]

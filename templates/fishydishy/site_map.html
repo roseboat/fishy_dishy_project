@@ -1,0 +1,52 @@
+﻿{% extends 'fishydishy/base.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %}
+   Site Map
+{% endblock %}
+
+{% block body_block %}
+<h1>
+        Site Map<br>
+    <div class="row">
+        <div class="col-lg-12" style="padding: 15px;"></div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4" style="padding: 15px;">
+
+                <h1>Main</h1> 
+                <a href="{% url 'index' %}" style="font-size: 25px;">HomePage</a><br>
+                <a href="{% url 'contact' %}" style="font-size: 25px;">Contact</a><br>
+                <a href="{% url 'about' %}" style="font-size: 25px;">About</a><br>
+                <a href="{% url 'site_map' %}" style="font-size: 25px;">SiteMap</a><br><br>
+
+                <h1>Recipe</h1>
+                <a href="{% url 'recipes' %}" style="font-size: 25px;">Recipe List</a><br>
+                {% if user.is_authenticated %}
+                <a href="{% url 'add_recipe' %}" style="font-size: 25px;">Add Recipe</a><br>
+                {% endif %}
+                    review recipe link
+                </div>
+
+            <div class="col-lg-4" style="padding: 15px;">
+
+                <h1>User</h1>
+                <a href="{% url 'login' %}" style="font-size: 25px;">Login</a><br>
+                <a href="{% url 'register' %}" style="font-size: 25px;">Register</a><br>
+                {% if user.is_authenticated %}
+                <a href="{% url 'user_profile' %}" style="font-size: 25px;">Your Profile</a><br>
+                {% endif %}
+                view favourites link <br>
+                view own recipe link <br>
+                view own review link <br>
+            </div>
+
+            <div class="col-lg-4" style="padding: 15px;">
+                <h1>Fish</h1>
+                <a href="{% url 'fish_map' %}" style="font-size: 25px;">Fish Monger Map</a><br>
+                <a href="{% url 'fish_finder' %}" style="font-size: 25px;">Fish Finder</a></div>
+{% endblock %}
