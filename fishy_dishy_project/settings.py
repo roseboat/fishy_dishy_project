@@ -140,3 +140,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'fishy.dishy5@gmail.com'
+EMAIL_HOST_PASSWORD = 'SmokedSalmon'
+EMAIL_PORT = 587
