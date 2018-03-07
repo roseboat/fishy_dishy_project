@@ -84,9 +84,33 @@ h3 {
 
 .btn1 {
     background-color: red;
+    padding: 18px;
     border-radius:50%;
 }
 
+.btn2 {
+    background-color: #FF9633;
+    padding: 18px;
+    border-radius:50%;
+}
+
+.btn3 {
+    background-color: yellow;
+    padding: 18px;
+    border-radius:50%;
+}
+
+.btn4 {
+    background-color: #A5FF33;
+    padding: 18px;
+    border-radius:50%;
+}
+
+.btn5 {
+    background-color: #33FF42;
+    padding: 18px;
+    border-radius:50%;
+}
 
 #address {
     padding: 12px;
