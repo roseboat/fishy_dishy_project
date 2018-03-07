@@ -65,6 +65,8 @@ def about(request):
 
 def fish_finder(request):
     fish_list = Fish.objects.order_by('name')
+    if __fishType__ == '__whitefish__':
+        whiteFish = Fish.objects
     context_dict = {'fishList': fish_list}
 
 
