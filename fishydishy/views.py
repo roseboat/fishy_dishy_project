@@ -289,8 +289,8 @@ def user_login(request):
 
 
 @login_required
-def restricted(request):
-    return render(request, 'fishydishy/restricted.html', {})
+def user_profile(request):
+    return render(request, 'fishydishy/user_profile.html', {})
 
 
 # Use the login_required decorator to ensure only those logged in can
