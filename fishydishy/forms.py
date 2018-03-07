@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from fishydishy.models import Page, Category, UserProfile, Recipe, Fish
 
@@ -60,18 +61,27 @@ class UserProfileForm(forms.ModelForm):
         fields = ('website', 'picture')
 
 class RecipeForm(forms.ModelForm):
-    title = forms.CharField(max_length=300, help_text="Give your recipe a title:", widget=forms.Textarea(attrs={'cols': 60, 'rows': 1}))
-    description = forms.CharField(max_length=2000, help_text="Introduce your recipe to the world!", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
+
+    def __init__(self, *args, **kwargs):  
+       super(RecipeForm, self).__init__(*args, **kwargs)
+
+    names = forms.CharField(max_length=300, help_text="Give your recipe a title:", widget=forms.Textarea(attrs={'cols': 60, 'rows': 1}))
+    description = forms.CharField(max_length=2000, help_text="Description", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
     ingredients = forms.CharField(max_length=125, help_text="Enter your ingredients", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
     method = forms.CharField(max_length=300, help_text="Enter your method", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
-    fish = forms.ModelMultipleChoiceField(queryset=Fish.objects.all())
+    #fish = forms.ModelMultipleChoiceField(queryset=Fish.objects.all())
+    fish = forms.ModelChoiceField(queryset=Fish.objects.all(),to_field_name="name", initial=0)
     #fish = forms.CharField(max_length=125, help_text="What fish is in it?", required=True)
     serves = forms.CharField(max_length=125, help_text="How many servings?")
-    user = forms.CharField(widget=forms.HiddenInput())
-
+    #user = forms.CharField(widget=forms.HiddenInput())
+    
     class Meta:
         model = Recipe
-        fields = ('title', 'description', 'ingredients', 'method', 'fish', 'serves')
+        fields = ('name', 'description', 'ingredients', 'method', 'fish', 'serves')
+        #exclude = ('user',)
 
 class FeedbackForm(forms.Form):
-    subject = forms.CharField(label='subject', max_length=100)
+    subject = forms.CharField(label='Subject', max_length=100)
+    message = forms.CharField(label='Message', widget=forms.Textarea)
+    sender = forms.EmailField(label='Email')
+    cc_myself = forms.BooleanField(required=False)

@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.core.mail import send_mail
 from datetime import datetime
 
 
@@ -168,23 +169,36 @@ def add_page(request, category_name_slug):
 def add_recipe(request):
     print(request.POST)
     form = RecipeForm()
+    print(request.user)
     
     # HTTP POST
     if request.method == 'POST': 
         form = RecipeForm(request.POST)
-        fish = request.POST.getlist('fish')
-        print(fish)        
+        
+        print(request.POST)
+        #fish = request.POST.getlist('fish')
+        #print(fish)        
         # provided valid form?
+        print(form.errors.as_data())
         if form.is_valid():
             # save new cate to DB
+            print("fuck valid youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
+            
+            
+            
             form.save(commit=True)
+            
+            
             # could give a confirmation message
             # but recent category is added on index page
             # and direct user back to index page
+            
             return index(request)
         else:
+            print("fuck youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
             print(form.errors)
 
+   # context_dict = {'form': form}
     return render(request, 'fishydishy/add_recipe.html', {'form': form})
 
 
@@ -343,8 +357,19 @@ def contact(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            print("YA DID IT")
-            return HttpResponseRedirect('/index/')
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+
+            recipients = ['fishy.dishy5@gmail.com']
+
+            if cc_myself:
+                recipients.append(sender)
+
+            send_mail(subject, message, sender, recipients)
+
+            return index(request)
     else:
         form = FeedbackForm()
     response = render(request, 'fishydishy/contact.html', {'form':form})
