@@ -81,4 +81,7 @@ class RecipeForm(forms.ModelForm):
         #exclude = ('user',)
 
 class FeedbackForm(forms.Form):
-    subject = forms.CharField(label='subject', max_length=100)
+    subject = forms.CharField(label='Subject', max_length=100)
+    message = forms.CharField(label='Message', widget=forms.Textarea)
+    sender = forms.EmailField(label='Email')
+    cc_myself = forms.BooleanField(required=False)

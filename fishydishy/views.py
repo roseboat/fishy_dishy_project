@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.core.mail import send_mail
 from datetime import datetime
 
 
@@ -63,8 +64,9 @@ def about(request):
 
 
 def fish_finder(request):
-    fish_list = Fish.objects.order_by('name')[:5]
+    fish_list = Fish.objects.order_by('name')
     context_dict = {'fishList': fish_list}
+
 
     response = render(request, 'fishydishy/fish_finder.html', context=context_dict)
 
@@ -301,8 +303,8 @@ def user_login(request):
 
 
 @login_required
-def restricted(request):
-    return render(request, 'fishydishy/restricted.html', {})
+def user_profile(request):
+    return render(request, 'fishydishy/user_profile.html', {})
 
 
 # Use the login_required decorator to ensure only those logged in can
@@ -353,8 +355,19 @@ def contact(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            print("YA DID IT")
-            return HttpResponseRedirect('/index/')
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+
+            recipients = ['fishy.dishy5@gmail.com']
+
+            if cc_myself:
+                recipients.append(sender)
+
+            send_mail(subject, message, sender, recipients)
+
+            return index(request)
     else:
         form = FeedbackForm()
     response = render(request, 'fishydishy/contact.html', {'form':form})

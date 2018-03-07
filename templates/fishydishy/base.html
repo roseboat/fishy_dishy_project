@@ -1,16 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 {% load staticfiles %}
 
 <html>
     <head>
-        <title>
-            Fishy Dishy!
-            {% block title_block %}
-                How to Tango with Django!
-            {% endblock %}
-        </title>
 
-<script
+        <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <link rel="stylesheet"
@@ -31,114 +25,16 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<style>
-.header {
- 
-	background: #e2f3fc url(http://s345.photobucket.com/user/roseboat/media/fishydishyheader_zpsk8n0eefx.png) 100% 100% no-repeat;
-
-}
-
-.navbar {
-  
-	background-color: #87c9d9;	
-	font-family: 'Josefin Sans';
-	width: 100%;
-	bottom: 0;
-	padding: 15px;
-	font-size: 15px;
-	color: #000000;
-	font-weight: 600;
-	text-transform: uppercase;
-	border-radius: 0;
-
-	}
+        <link rel="stylesheet" href="{% static "mystyle.css" %}">
 
 
-footer {
-	
-	width: 100%;
-	font-weight: 600;
-	background-color: #2e9fb5;
-	bottom: 0;
-	text-transform: uppercase;
-	padding: 15px;
-	font-size: 25px;
-}
+        <title>
+            Fishy Dishy!
+            {% block title_block %}
+                How to Tango with Django!
+            {% endblock %}
+        </title>
 
-footer a {
-	color: #FFF;
-}
- 
-
-
-body {
-	
-	font-family: 'Josefin Sans', sans-serif;
-
-	font-size: 20px;
-	color: #000;
-}
-
-
-.row.content {
-	height: 100%
-}
-
-.card-img-top {
-	width: 100%;
-	height: 15vw;
-	object-fit: cover;
-}
-
-
-
-/*.btn {
-	cursor: pointer;
-
-	font-size: 25px;
-	
-	padding: 10px 10px;
-
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}*/
-
-
-
-h1 {
-	
-	font-weight: 700;
-	font-size: 45px;
-}
-
-
-
-h2 {
-	font-weight: 700;
-
-	font-size: 35px;
-}
-
-
-
-h3 {
-	font-weight: 700;
-	font-size: 25px;
-}
-
-h4 {
-	font-weight: 700;
-	font-size: 25px;
-}
-
-
-.row.content {
-	
-height: auto;
-	}
-}
-
-</style>
     </head>
     <body>
 	<nav class="navbar">
@@ -153,6 +49,7 @@ height: auto;
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'add_recipe' %}" style="font-size: 25px;">Add a Recipe</a></li>
                 <li><a href="{% url 'logout' %}?next=/fishydishy/" style="font-size: 25px;">Logout</a></li>
+                <li><a href="{% url 'user_profile' %}" style="font-size: 25px;">Your Profile</a></li>
                <!-- <li><a href="{% url 'add_category' %}" style="font-size: 25px;">Add New Category</a></li> -->
                 {% else %}
                     <li><a href="{% url 'login' %}" style="font-size: 25px;">Login</a></li>
@@ -193,7 +90,7 @@ height: auto;
 <a href="{% url 'about' %}">About</a>
 </div>
 <div class="col-md-4">
-	<a href="{% url 'contact' %}" style="font-size: 25px;">Contact</a>
+	<a href="/fishydishy/contact/" style="font-size: 25px;">Contact</a>
 </div>
 <div class="col-md-4">
 	<a href="" style="font-size: 25px;">SiteMap</a>
