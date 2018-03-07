@@ -37,15 +37,9 @@ class Fish(models.Model):
     name = models.CharField(max_length=128, unique=True)
     fishType = models.CharField(max_length=128)
     description = models.CharField(max_length=20000, blank=False, default="Fish Description")
-    price = models.FloatField
-    area = models.CharField
+    area = models.CharField(max_length=200, default="The Sea")
     sustainability = models.IntegerField(default=3)
-    slug = models.SlugField(unique=True, blank=True)
     image = models.ImageField(upload_to='static/fish_images', blank=False)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Fish, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

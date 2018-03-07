@@ -15,7 +15,7 @@ Find a Fish!
 
 <div class="containter">
     <div class="row">
-        <div class="col-lg-5" style="padding: 15px;">
+        <div class="col-lg-4" style="padding: 15px;">
 
             <h3>Search by type:</h3><br>
             <div>
@@ -36,16 +36,16 @@ Find a Fish!
             <h3>Search by sustainability:</h3><br>
 
             <div><center></center>
-                <button class="btn btn5" onclick="myFunction()"> 5</button>
-                <button class="btn btn4" onclick="myFunction()"> 4</button>
-                <button class="btn btn3" onclick="myFunction()"> 3</button>
-                <button class="btn btn2" onclick="myFunction()"> 2</button>
-                <button class="btn btn1" onclick="myFunction()"> 1</button>
+                <button class="btn btn5" onclick="myFunction()">  5  </button>
+                <button class="btn btn4" onclick="myFunction()">  4  </button>
+                <button class="btn btn3" onclick="myFunction()">  3  </button>
+                <button class="btn btn2" onclick="myFunction()">  2  </button>
+                <button class="btn btn1" onclick="myFunction()">  1  </button>
             </center></div>
             <br>
         </div>
 
-        <div class="col-lg-7" style="padding: 15px;">
+        <div class="col-lg-8" style="padding: 15px;">
 
             <div>
 
@@ -61,7 +61,8 @@ Find a Fish!
                         <div class="col-lg-7" style="padding: 15px;">
                             <h2>{{ Fish.name }}</h2>
                             <p>{{ Fish.description }}</p><br>
-                            <p> Sustainability rating: {{ Fish.sustainability }}</p>
+                            <p><b>Average Sustainability Rating:</b><i> {{ Fish.sustainability }}</i></p>
+                            <p><b>Area:</b> <i> {{ Fish.area }}</i></p>
                         </div>
                     </div>
                     <hr>
@@ -81,6 +82,7 @@ Find a Fish!
         $(log).append($(this).prop('checked').toString())
     });
 
+    
 
 </script>
 
