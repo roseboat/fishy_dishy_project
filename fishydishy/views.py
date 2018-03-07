@@ -65,6 +65,8 @@ def about(request):
 
 def fish_finder(request):
     fish_list = Fish.objects.order_by('name')
+    if __fishType__ == '__whitefish__':
+        whiteFish = Fish.objects
     context_dict = {'fishList': fish_list}
 
 
@@ -167,23 +169,36 @@ def add_page(request, category_name_slug):
 def add_recipe(request):
     print(request.POST)
     form = RecipeForm()
+    print(request.user)
     
     # HTTP POST
     if request.method == 'POST': 
         form = RecipeForm(request.POST)
-        fish = request.POST.getlist('fish')
-        print(fish)        
+        
+        print(request.POST)
+        #fish = request.POST.getlist('fish')
+        #print(fish)        
         # provided valid form?
+        print(form.errors.as_data())
         if form.is_valid():
             # save new cate to DB
+            print("fuck valid youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
+            
+            
+            
             form.save(commit=True)
+            
+            
             # could give a confirmation message
             # but recent category is added on index page
             # and direct user back to index page
+            
             return index(request)
         else:
+            print("fuck youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
             print(form.errors)
 
+   # context_dict = {'form': form}
     return render(request, 'fishydishy/add_recipe.html', {'form': form})
 
 
