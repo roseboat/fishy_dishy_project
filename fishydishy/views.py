@@ -163,12 +163,14 @@ def add_page(request, category_name_slug):
 
 @login_required
 def add_recipe(request):
+    print(request.POST)
     form = RecipeForm()
-
+    
     # HTTP POST
-    if request.method == 'POST':
+    if request.method == 'POST': 
         form = RecipeForm(request.POST)
-
+        fish = request.POST.getlist('fish')
+        print(fish)        
         # provided valid form?
         if form.is_valid():
             # save new cate to DB
