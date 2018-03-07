@@ -28,9 +28,9 @@ urlpatterns = [
         views.user_login,
         name='login'),
 
-    url(r'^restricted/',
-        views.restricted,
-        name='restricted'),
+    url(r'^user_profile/',
+        views.user_profile,
+        name='user_profile'),
 
     url(r'^logout/$',
         views.user_logout,

@@ -64,8 +64,9 @@ def about(request):
 
 
 def fish_finder(request):
-    fish_list = Fish.objects.order_by('name')[:5]
+    fish_list = Fish.objects.order_by('name')
     context_dict = {'fishList': fish_list}
+
 
     response = render(request, 'fishydishy/fish_finder.html', context=context_dict)
 
@@ -164,12 +165,14 @@ def add_page(request, category_name_slug):
 
 @login_required
 def add_recipe(request):
+    print(request.POST)
     form = RecipeForm()
-
+    
     # HTTP POST
-    if request.method == 'POST':
+    if request.method == 'POST': 
         form = RecipeForm(request.POST)
-
+        fish = request.POST.getlist('fish')
+        print(fish)        
         # provided valid form?
         if form.is_valid():
             # save new cate to DB
@@ -287,8 +290,8 @@ def user_login(request):
 
 
 @login_required
-def restricted(request):
-    return render(request, 'fishydishy/restricted.html', {})
+def user_profile(request):
+    return render(request, 'fishydishy/user_profile.html', {})
 
 
 # Use the login_required decorator to ensure only those logged in can
