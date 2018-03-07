@@ -14,37 +14,31 @@
 
 <div class="containter">
     <div class="row">
-        <div class="col-lg-5" style="padding: 15px;">
+        <div class="col-lg-4" style="padding: 15px;">
 
-            <h3>Sort by: </h3><br>
-            <div>
-                <label>
-                    <input type="radio" name="options" id="oily"> Oily Fish</label><br>
-                <label>
-                    <input type="radio" name="options" id="white"> White Fish</label><br>
-                <label>
-                    <input type="radio" name="options" id="flat"> Flat Fish</label><br>
-                <label>
-                    <input type="radio" name="options" id="shell"> Shellfish</label><br>
-                <label>
-                    <input type="radio" name="options" id="all"> All</label><br>
-
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort By </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Name</a></li>
+                    <li><a href="#">Rating</a></li>
+                    <li><a href="#">Date Uploaded</a></li>
+                </ul>
             </div>
 
             <br><br>
-            <h3>Search by sustainability:</h3><br>
-
-            <div><center></center>
-                <button class="btn btn5" onclick="myFunction()"> 5</button>
-                <button class="btn btn4" onclick="myFunction()"> 4</button>
-                <button class="btn btn3" onclick="myFunction()"> 3</button>
-                <button class="btn btn2" onclick="myFunction()"> 2</button>
-                <button class="btn btn1" onclick="myFunction()"> 1</button>
-            </center></div>
+            <h3>Browse By Fish:</h3><br>
+                <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Fish </button>
+                <ul class="dropdown-menu">
+                    {% for Fish in fishList %}
+                    <li><a href="#">{{ Fish.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
             <br>
         </div>
 
-        <div class="col-lg-7" style="padding: 15px;">
+        <div class="col-lg-8" style="padding: 15px;">
 
             <div>
 

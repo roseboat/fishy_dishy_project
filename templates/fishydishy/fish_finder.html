@@ -35,26 +35,20 @@ Find a Fish!
             <br><br>
             <h3>Search by sustainability:</h3><br>
 
-            <div><center></center>
-                <button class="btn btn5" onclick="myFunction()">  5  </button>
-                <button class="btn btn4" onclick="myFunction()">  4  </button>
-                <button class="btn btn3" onclick="myFunction()">  3  </button>
-                <button class="btn btn2" onclick="myFunction()">  2  </button>
-                <button class="btn btn1" onclick="myFunction()">  1  </button>
-            </center></div>
+            <div>
+                <center></center>
+                <button class="btn btn5" onclick="myFunction()"> 5</button>
+                <button class="btn btn4" onclick="myFunction()"> 4</button>
+                <button class="btn btn3" onclick="myFunction()"> 3</button>
+                <button class="btn btn2" onclick="myFunction()"> 2</button>
+                <button class="btn btn1" onclick="myFunction()"> 1</button>
+                </center></div>
             <br>
         </div>
-
         <div class="col-lg-8" style="padding: 15px;">
-
             <div>
-
                 {% for Fish in fishList %}
-
                 <div class="containter">
-
-
-
                     <div class="row">
                         <div class="col-lg-5" style="padding: 15px;">
                             <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/></div>
@@ -67,9 +61,7 @@ Find a Fish!
                     </div>
                     <hr>
                 </div>
-                    {% endfor %}
-
-
+                {% endfor %}
             </div>
         </div>
     </div>
