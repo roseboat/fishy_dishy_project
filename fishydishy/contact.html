@@ -1,0 +1,15 @@
+{% extends 'fishydishy/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Contact
+{% endblock %}
+
+{% block body_block %}
+    <div class="feedback">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
