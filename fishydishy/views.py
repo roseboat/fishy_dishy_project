@@ -293,6 +293,9 @@ def user_login(request):
 def user_profile(request):
     return render(request, 'fishydishy/user_profile.html', {})
 
+def site_map(request):
+    return render(request, 'fishydishy/site_map.html', {})
+
 
 # Use the login_required decorator to ensure only those logged in can
 # access the view
