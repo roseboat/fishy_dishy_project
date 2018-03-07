@@ -65,6 +65,10 @@ def about(request):
 
 def fish_finder(request):
     fish_list = Fish.objects.order_by('name')
+
+    #if __fishType__ == '__whitefish__':
+    #    whiteFish = Fish.objects
+
     context_dict = {'fishList': fish_list}
 
 
@@ -305,6 +309,9 @@ def user_login(request):
 @login_required
 def user_profile(request):
     return render(request, 'fishydishy/user_profile.html', {})
+
+def site_map(request):
+    return render(request, 'fishydishy/site_map.html', {})
 
 
 # Use the login_required decorator to ensure only those logged in can

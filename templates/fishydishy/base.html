@@ -4,9 +4,9 @@
 <html>
     <head>
 
-        <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static "js/jquery-3.3.1.js" %}"></script>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="{% static "js/fishy-query.js" %}"></script
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.11.1/themes/flick/jquery-ui.css">
 
@@ -81,8 +81,8 @@
        
 
 </div>
-<div class="col-lg-2" style="padding: 15px;">
-</div></div>
+<!--<div class="col-lg-2" style="padding: 15px;">
+</div>--></div>
 
 
 	<footer class="container-fluid text-center">
@@ -90,10 +90,10 @@
 <a href="{% url 'about' %}">About</a>
 </div>
 <div class="col-md-4">
-	<a href="/fishydishy/contact/" style="font-size: 25px;">Contact</a>
+	<a href="{% url 'contact' %}" style="font-size: 25px;">Contact</a>
 </div>
 <div class="col-md-4">
-	<a href="" style="font-size: 25px;">SiteMap</a>
+	<a href="/fishydishy/site_map/" style="font-size: 25px;">SiteMap</a>
 </div>
 	</footer>
 
