@@ -81,7 +81,7 @@ def fish_map(request):
 def recipes(request):
     recipe_list = Recipe.objects.order_by('name')
     context_dict = {'recipes': recipe_list}
-    
+
     response = render(request, 'fishydishy/recipes.html', context=context_dict)
     
     
@@ -306,7 +306,7 @@ def user_login(request):
 
 @login_required
 def user_profile(request):
-    recipe_list = Recipe.objects.order_by('name')
+    recipe_list = Recipe.objects.filter(user=request.user.username)
     context_dict = {'recipes': recipe_list}
 
     return render(request, 'fishydishy/user_profile.html', context=context_dict)

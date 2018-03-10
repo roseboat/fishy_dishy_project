@@ -7,17 +7,38 @@
 
 {% block body_block %}
 
-{% if recipes %}
-	    <ul>
+    {% if recipes %}
+	    <ul class="{{ user.username }}">
 	    {% for e in recipes %}
-		<li>{{ e.name }}</li>
+		 <li id="welcomeDiv1" onload = "showDiv1()">{{ e.name }}</li> 
 	    {% endfor %}
 	    </ul>
 	{% else %}
 	    <strong>No recipes found.</strong>
 	{% endif %}
 
- howdy {{user.username}} !
+ <p id="username">{{user.username}}</p>
+<script>
 
+    
+
+ //   $(document).ready(function () {
+  //      var user = $("#username").text();
+  //      user = "." + user;
+   //         $(user).show();
+   //    
+   // });
+
+    function showDiv1() {
+        var my_disply = document.getElementById('welcomeDiv1').style.display;
+        alert(my_disply);
+        if (my_disply === "TomatoManChad")
+            document.getElementById('welcomeDiv1').style.display = "none";
+        else
+            document.getElementById('welcomeDiv1').style.display = "block";
+    }
+
+    
+</script>
 
 {% endblock %}
