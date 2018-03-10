@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from fishydishy.models import Category
@@ -10,7 +9,6 @@ from fishydishy.models import Recipe
 from fishydishy.models import Review
 from fishydishy.models import UserProfile
 from django.contrib.auth.models import User
-
 from fishydishy.forms import CategoryForm
 from fishydishy.forms import PageForm, FeedbackForm
 from fishydishy.forms import UserForm, UserProfileForm, RecipeForm
@@ -82,10 +80,14 @@ def fish_map(request):
 
 def recipes(request):
     recipe_list = Recipe.objects.order_by('name')
+
     fish_list = Fish.objects.order_by('name')
     context_dict = {'recipeList': recipe_list,
                     'fishList': fish_list}
     
+    context_dict = {'recipes': recipe_list}
+
+
     response = render(request, 'fishydishy/recipes.html', context=context_dict)
 
     return response
@@ -309,7 +311,10 @@ def user_login(request):
 
 @login_required
 def user_profile(request):
-    return render(request, 'fishydishy/user_profile.html', {})
+    recipe_list = Recipe.objects.filter(user=request.user.username)
+    context_dict = {'recipes': recipe_list}
+
+    return render(request, 'fishydishy/user_profile.html', context=context_dict)
 
 def site_map(request):
     return render(request, 'fishydishy/site_map.html', {})
