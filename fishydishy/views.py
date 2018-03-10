@@ -84,7 +84,7 @@ def recipes(request):
     fish_list = Fish.objects.order_by('name')
     context_dict = {'recipeList': recipe_list,
                     'fishList': fish_list}
-    
+
     context_dict = {'recipes': recipe_list}
 
 

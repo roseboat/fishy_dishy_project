@@ -72,31 +72,23 @@ Find a Fish!
 
     $('#radioButtons input').on('change', function () {
 
-        //alert($('input[name="options"]:checked', '#radioButtons').val());
         var query = $('input[name="options"]:checked', '#radioButtons').val();
 
         if (query === "all") {
             $(".fish").show();
         } else {
             $(".fish").hide();
-
             var selector = "." + query;
-
             $(selector).show();
         }
-
     });
 
-
     function myFunction(num) {
-
         num = "." + num;
         $(".fish").hide();
         $(num).show();
-
     }
 
 </script>
-
 
 {% endblock %}
