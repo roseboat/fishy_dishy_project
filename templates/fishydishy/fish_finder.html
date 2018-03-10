@@ -19,17 +19,18 @@ Find a Fish!
 
             <h3>Search by type:</h3><br>
             <div>
-                <label>
-                    <input type="radio" name="options" id="oily"> Oily Fish</label><br>
-                <label>
-                    <input type="radio" name="options" id="white"> White Fish</label><br>
-                <label>
-                    <input type="radio" name="options" id="flat"> Flat Fish</label><br>
-                <label>
-                    <input type="radio" name="options" id="shell"> Shellfish</label><br>
-                <label>
-                    <input type="radio" name="options" id="all"> All</label><br>
-
+                <form id="radioButtons">
+                    <label>
+                        <input type="radio" name="options" value="oily"> Oily Fish</label><br>
+                    <label>
+                        <input type="radio" name="options" value="white"> White Fish</label><br>
+                    <label>
+                        <input type="radio" name="options" value="flat"> Flat Fish</label><br>
+                    <label>
+                        <input type="radio" name="options" value="shell"> Shellfish</label><br>
+                    <label>
+                        <input type="radio" name="options" value="all"> All</label><br>
+                </form>
             </div>
 
             <br><br>
@@ -50,13 +51,15 @@ Find a Fish!
                 {% for Fish in fishList %}
                 <div class="containter">
                     <div class="row">
-                        <div class="col-lg-5" style="padding: 15px;">
-                            <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/></div>
-                        <div class="col-lg-7" style="padding: 15px;">
-                            <h2>{{ Fish.name }}</h2>
-                            <p>{{ Fish.description }}</p><br>
-                            <p><b>Average Sustainability Rating:</b><i> {{ Fish.sustainability }}</i></p>
-                            <p><b>Area:</b> <i> {{ Fish.area }}</i></p>
+                        <div id="{{ Fish.fishType}}">
+                            <div class="col-lg-5" style="padding: 15px;">
+                                <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/></div>
+                            <div class="col-lg-7" style="padding: 15px;">
+                                <h2>{{ Fish.name }}</h2>
+                                <p>{{ Fish.description }}</p><br>
+                                <p><b>Average Sustainability Rating:</b><i> {{ Fish.sustainability }}</i></p>
+                                <p><b>Area:</b> <i> {{ Fish.area }}</i></p>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -70,11 +73,11 @@ Find a Fish!
 
 <script>
 
-    $("input").on("change", function () {
-        $(log).append($(this).prop('checked').toString())
+    $('#radioButtons input').on('change', function () {
+
+
+        alert($('input[name="myRadio"]:checked', '#radioButtons').val());
     });
-
-
 
 </script>
 
