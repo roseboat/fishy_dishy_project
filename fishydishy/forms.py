@@ -62,8 +62,9 @@ class UserProfileForm(forms.ModelForm):
 
 class RecipeForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):  
-       super(RecipeForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user',None)
+        super(RecipeForm, self).__init__(*args, **kwargs)
 
     names = forms.CharField(max_length=300, help_text="Give your recipe a title:", widget=forms.Textarea(attrs={'cols': 60, 'rows': 1}))
     description = forms.CharField(max_length=2000, help_text="Description", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
@@ -78,7 +79,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ('name', 'description', 'ingredients', 'method', 'fish', 'serves')
-        #exclude = ('user',)
+        exclude = ('user',)
 
 class FeedbackForm(forms.Form):
     subject = forms.CharField(label='Subject', max_length=100)

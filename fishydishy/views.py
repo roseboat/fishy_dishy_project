@@ -8,6 +8,9 @@ from fishydishy.models import Page
 from fishydishy.models import Fish
 from fishydishy.models import Recipe
 from fishydishy.models import Review
+from fishydishy.models import UserProfile
+from django.contrib.auth.models import User
+
 from fishydishy.forms import CategoryForm
 from fishydishy.forms import PageForm, FeedbackForm
 from fishydishy.forms import UserForm, UserProfileForm, RecipeForm
@@ -164,28 +167,29 @@ def add_page(request, category_name_slug):
 
 
 @login_required
-def add_recipe(request):
+def add_recipe(request, *args, **kwargs):
     print(request.POST)
     form = RecipeForm()
     print(request.user)
+
     
     # HTTP POST
     if request.method == 'POST': 
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         
         print(request.POST)
         #fish = request.POST.getlist('fish')
         #print(fish)        
         # provided valid form?
         print(form.errors.as_data())
+
+        #user=
+        recipe= Recipe(user=request.user.username)
+        form= RecipeForm(request.POST, instance=recipe)
         if form.is_valid():
             # save new cate to DB
             print("fuck valid youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
-            
-            
-            
-            form.save(commit=True)
-            
+            recipe.save()
             
             # could give a confirmation message
             # but recent category is added on index page
