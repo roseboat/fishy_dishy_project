@@ -66,11 +66,7 @@ def about(request):
 def fish_finder(request):
     fish_list = Fish.objects.order_by('name')
 
-    #if __fishType__ == '__whitefish__':
-    #    whiteFish = Fish.objects
-
     context_dict = {'fishList': fish_list}
-
 
     response = render(request, 'fishydishy/fish_finder.html', context=context_dict)
 
@@ -82,7 +78,7 @@ def fish_map(request):
     return response
 
 def recipes(request):
-    recipe_list = Recipe.objects.order_by('avgRating')
+    recipe_list = Recipe.objects.order_by('name')
     context_dict = {'recipeList': recipe_list}
     
     response = render(request, 'fishydishy/recipes.html', context=context_dict)

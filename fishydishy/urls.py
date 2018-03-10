@@ -41,4 +41,5 @@ urlpatterns = [
     url(r'^site_map/$',
         views.site_map,
         name='site_map'),
+
 ]
