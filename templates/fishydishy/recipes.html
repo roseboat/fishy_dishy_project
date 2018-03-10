@@ -12,6 +12,23 @@
     <h1>Browse Recipes</h1>
 </div>
 
+
+
+
+{% if recipes %}
+	    <ul>
+	    {% for e in recipes %}
+		<li>{{ e.name }}</li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <strong>No recipes found.</strong>
+	{% endif %}
+
+
+
+
+
 <div class="containter">
     <div class="row">
         <div class="col-lg-4" style="padding: 15px;">
@@ -30,21 +47,9 @@
                 <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Fish </button>
                 <ul class="dropdown-menu">
-      {% for Recipe in recipeList %}
-                <div class="containter">
-                    <div class="row">
-                        <div id="{{ Fish.fishType }}">
-                            <div class="col-lg-5" style="padding: 15px;">
-                                <img class="fish-image" src="/{{ Recipe.image }}" alt="Picture of {{ Recipe.name}}"/></div>
-                            <div class="col-lg-7" style="padding: 15px;">
-                                <h2>{{ Recipe.name }}</h2>
-                                <p>{{ Recipe.description }}</p><br>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                {% endfor %}
+                    {% for Fish in fishList %}
+                    <li><a href="#">{{ Fish.name }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <br>

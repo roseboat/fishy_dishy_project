@@ -7,6 +7,15 @@
 
 {% block body_block %}
 
+{% if recipes %}
+	    <ul>
+	    {% for e in recipes %}
+		<li>{{ e.name }}</li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <strong>No recipes found.</strong>
+	{% endif %}
 
  howdy {{user.username}} !
 
