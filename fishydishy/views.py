@@ -85,9 +85,6 @@ def recipes(request):
     context_dict = {'recipeList': recipe_list,
                     'fishList': fish_list}
 
-    context_dict = {'recipes': recipe_list}
-
-
     response = render(request, 'fishydishy/recipes.html', context=context_dict)
 
     return response
