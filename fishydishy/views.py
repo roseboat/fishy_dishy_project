@@ -82,11 +82,12 @@ def fish_map(request):
 
 def recipes(request):
     recipe_list = Recipe.objects.order_by('name')
-    context_dict = {'recipeList': recipe_list}
+    fish_list = Fish.objects.order_by('name')
+    context_dict = {'recipeList': recipe_list,
+                    'fishList': fish_list}
     
     response = render(request, 'fishydishy/recipes.html', context=context_dict)
-    
-    
+
     return response
 
 def show_category(request, category_name_slug):

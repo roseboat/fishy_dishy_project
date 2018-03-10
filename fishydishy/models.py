@@ -56,7 +56,7 @@ class Recipe(models.Model):
     method = models.CharField(max_length=9999, null=True)
     fish = models.ForeignKey(Fish)
     cost = models.FloatField(null=True)
-    time = models.FloatField(default=1)
+    time = models.CharField(max_length=128, null=True)
     serves = models.IntegerField(null=True)
     avgRating = models.FloatField(null=True)
     slug = models.SlugField(null=True, blank=True)

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-	Recipes
+Recipes
 {% endblock %}
 
 {% block body_block %}
@@ -17,7 +17,7 @@
         <div class="col-lg-4" style="padding: 15px;">
 
             <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort By </button>
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort By</button>
                 <ul class="dropdown-menu">
                     <li><a href="#">Name</a></li>
                     <li><a href="#">Rating</a></li>
@@ -27,57 +27,52 @@
 
             <br><br>
             <h3>Browse By Fish:</h3><br>
-                <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Fish </button>
-                <ul class="dropdown-menu">
-      {% for Recipe in recipeList %}
-                <div class="containter">
+
+
+            <select id="dropDownMenu" class="btn dropdown-toggle" type="button" onchange="myFunction(this.value)">
+                {% for Fish in fishList %}
+                <center>
+                    <option value="{{ Fish.name }}">{{ Fish.name }}</option>
+                </center>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-lg-8" style="padding: 15px;">
+            <div>
+                {% for Recipe in recipeList %}
+                <div class="containter recipe {{ Recipe.fish }}">
                     <div class="row">
-                        <div id="{{ Fish.fishType }}">
-                            <div class="col-lg-5" style="padding: 15px;">
-                                <img class="fish-image" src="/{{ Recipe.image }}" alt="Picture of {{ Recipe.name}}"/></div>
-                            <div class="col-lg-7" style="padding: 15px;">
-                                <h2>{{ Recipe.name }}</h2>
-                                <p>{{ Recipe.description }}</p><br>
-                            </div>
+                        <div class="col-lg-5" style="padding: 15px;">
+                            <img class="fish-image" src="/{{ Recipe.image }}"
+                                 alt="Picture of {{ Recipe.name}}"/></div>
+                        <div class="col-lg-7" style="padding: 15px;">
+                            <h2>{{ Recipe.name }}</h2>
+                            <p>{{ Recipe.description }}</p><br>
+                            <p><b>Cooking time:</b><i> {{ Recipe.time }} minutes</i></p>
+                            <p><b>Fish used:</b> <i> {{ Recipe.fish }}</i></p>
                         </div>
                     </div>
                     <hr>
                 </div>
                 {% endfor %}
-                </ul>
-            </div>
-            <br>
-        </div>
-
-        <div class="col-lg-8" style="padding: 15px;">
-
-            <div>
-
-                {% for Fish in fishList %}
-
-
-                <div class="containter">
-
-                    <div class="row">
-                        <div class="col-lg-5" style="padding: 15px;">
-                            <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/></div>
-                        <div class="col-lg-7" style="padding: 15px;">
-                            <h2>{{ Fish.name }}</h2>
-                            <p>{{ Fish.description }}</p><br>
-                            <p> Sustainability rating: {{ Fish.sustainability }}</p>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                    {% endfor %}
-
-
             </div>
         </div>
     </div>
 </div>
 
+<script>
 
-	
-	{% endblock %}
+
+    function myFunction(value) {
+
+        var fishSelected = value;
+        fishSelected = "." + fishSelected;
+        $(".recipe").hide();
+        $(fishSelected).show();
+
+    }
+</script>
+
+
+{% endblock %}
