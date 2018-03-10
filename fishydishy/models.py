@@ -45,7 +45,11 @@ class Fish(models.Model):
         return self.name
 
 class Recipe(models.Model):
-    #user = models.ForeignKey(User)
+    
+    user = models.CharField(max_length=128, null=True)
+    def __unicode__(self):
+        return self.name
+    
     name = models.CharField(max_length=128, null=True)
     description = models.CharField(max_length=1280, null=True)
     ingredients = models.CharField(max_length=1280, null=True)
