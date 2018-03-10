@@ -37,19 +37,19 @@ Find a Fish!
             <h3>Search by sustainability:</h3><br>
 
             <div>
-                <center></center>
-                <button class="btn btn5" onclick="myFunction()"> 5</button>
-                <button class="btn btn4" onclick="myFunction()"> 4</button>
-                <button class="btn btn3" onclick="myFunction()"> 3</button>
-                <button class="btn btn2" onclick="myFunction()"> 2</button>
-                <button class="btn btn1" onclick="myFunction()"> 1</button>
+                <center>
+                <button class="btn btn5" onclick="myFunction(5)" value=5> 5</button>
+                <button class="btn btn4" onclick="myFunction(4)" value=4> 4</button>
+                <button class="btn btn3" onclick="myFunction(3)" value=3> 3</button>
+                <button class="btn btn2" onclick="myFunction(2)" value=2> 2</button>
+                <button class="btn btn1" onclick="myFunction(1)" value=1> 1</button>
                 </center></div>
             <br>
         </div>
         <div class="col-lg-8" style="padding: 15px;">
             <div id ="defaultLoop">
                 {% for Fish in fishList %}
-                <div class="containter fish {{ Fish.fishType }}">
+                <div class="containter fish {{ Fish.fishType }} {{ Fish.sustainability }}">
                     <div class="row">
                             <div class="col-lg-5" style="padding: 15px;">
                                 <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/></div>
@@ -87,6 +87,15 @@ Find a Fish!
         }
 
     });
+
+
+    function myFunction(num) {
+
+        num = "." + num;
+        $(".fish").hide();
+        $(num).show();
+
+    }
 
 </script>
 
