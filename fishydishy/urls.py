@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^fishfinder/$', views.fish_finder, name='fish_finder'),
     url(r'^add_recipe/$', views.add_recipe, name='add_recipe'),
     url(r'^recipes/$', views.recipes, name='recipes'),
+    url(r'^search/$', views.search, name='search'),
 
         
 

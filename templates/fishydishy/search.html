@@ -1,0 +1,25 @@
+{% extends 'fishydishy/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Search results
+{% endblock %}
+
+
+
+{% block body_block %}
+
+ <h1>Results...</h1><br><br>
+
+{% if recipes %}
+{% for r in recipes %} 
+    
+    <img src="{{r.image}}" alt="No Image"></a>
+    <p>{{r.name}}</p>
+    <p>{{r.description}}</p>   
+{% endfor %}
+{% else %}
+	None.
+{% endif %}
+
+{% endblock %}

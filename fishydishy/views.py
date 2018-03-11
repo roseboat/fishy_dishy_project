@@ -18,6 +18,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
+import re
+from django.db.models import Q
 
 
 # Create your views here.
@@ -88,6 +90,20 @@ def recipes(request):
     response = render(request, 'fishydishy/recipes.html', context=context_dict)
 
     return response
+
+
+def search(request):        
+    if request.method == 'GET': # this will be GET now      
+        target =  request.GET.get('search') # do some research what it does
+        print(target, 'PRRIIIIIIIIIIIIIIIIIIIIIIIIIIIIIINT')
+        try:
+            status = Recipe.objects.filter(description__icontains=target) | Recipe.objects.filter(name__icontains=target) | Recipe.objects.filter(fish__name__startswith=target) # filter returns a list so you might consider skip except part
+        except Recipe.DoesNotExist:
+            print(error)
+        return render(request,"fishydishy/search.html",{"recipes":status})
+    else:
+        return render(request,"fishydishy/search.html",{})
+
 
 def show_category(request, category_name_slug):
     # create a context dictionary which we can pass to template rendering engine
