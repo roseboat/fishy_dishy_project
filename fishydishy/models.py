@@ -51,8 +51,8 @@ class Recipe(models.Model):
         return self.name
     
     name = models.CharField(max_length=128, null=True)
-    description = models.CharField(max_length=1280, null=True)
-    ingredients = models.CharField(max_length=1280, null=True)
+    description = models.CharField(max_length=9999, null=True)
+    ingredients = models.CharField(max_length=9999, null=True)
     method = models.CharField(max_length=9999, null=True)
     fish = models.ForeignKey(Fish)
     cost = models.FloatField(null=True)
@@ -73,13 +73,9 @@ class Recipe(models.Model):
 class Review(models.Model):
     recipe = models.ForeignKey(Recipe)
     user = models.ForeignKey(User)
-    rating = models.FloatField
+    rating = models.IntegerField(blank=True, default = 5)
     comment = models.CharField
-    slug = models.SlugField(unique=True, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Review, self).save(*args, **kwargs)
+    date_posted = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.comment

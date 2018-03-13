@@ -60,7 +60,7 @@ Recipes
                             <img class="fish-image" src="/{{ Recipe.image }}"
                                  alt="Picture of {{ Recipe.name}}"/></div>
                         <div class="col-lg-7" style="padding: 15px;">
-                            <h2>{{ Recipe.name }}</h2>
+                            <a href="{% url 'show_recipe' Recipe.slug %}"><h2>{{ Recipe.name }}</h2></a>
                             <p>{{ Recipe.description }}</p><br>
                             <p><b>Cooking time:</b><i> {{ Recipe.time }} minutes</i></p>
                             <p><b>Fish used:</b> <i> {{ Recipe.fish }}</i></p>

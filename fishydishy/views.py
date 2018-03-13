@@ -11,7 +11,7 @@ from fishydishy.models import UserProfile
 from django.contrib.auth.models import User
 from fishydishy.forms import CategoryForm
 from fishydishy.forms import PageForm, FeedbackForm
-from fishydishy.forms import UserForm, UserProfileForm, RecipeForm
+from fishydishy.forms import UserForm, UserProfileForm, RecipeForm, CommentForm
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -88,6 +88,37 @@ def recipes(request):
     response = render(request, 'fishydishy/recipes.html', context=context_dict)
 
     return response
+
+
+def show_recipe(request, recipe_name_slug, *args, **kwargs):
+    context_dict= {}
+
+    try:
+        recipe = Recipe.objects.get(slug=recipe_name_slug)
+        reviews = Review.objects.filter(recipe=recipe).order_by('-date_posted')
+
+        form = CommentForm()
+
+        if request.method == 'POST':
+            # user posted the form
+            form = CommentForm(request.POST)
+
+            if form.is_valid():
+                com = form.save(commit=True)
+                return show_recipe(request, recipe_name_slug)
+            else:
+                print(form.errors)
+
+            # process the form here. is it valid? save the form to the database.
+
+    except Recipe.DoesNotExist:
+
+        context_dict['recipe'] = None
+        context_dict['recipe'] = None
+
+    context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews}
+    return render(request, 'fishydishy/recipe.html', context_dict)
+
 
 def show_category(request, category_name_slug):
     # create a context dictionary which we can pass to template rendering engine
@@ -176,11 +207,7 @@ def add_recipe(request, *args, **kwargs):
     # HTTP POST
     if request.method == 'POST': 
         form = RecipeForm(request.POST, request.FILES)
-        
-        print(request.POST)
-        #fish = request.POST.getlist('fish')
-        #print(fish)        
-        # provided valid form?
+
         print(form.errors.as_data())
 
         #user=
@@ -188,7 +215,6 @@ def add_recipe(request, *args, **kwargs):
         form= RecipeForm(request.POST, instance=recipe)
         if form.is_valid():
             # save new cate to DB
-            print("fuck valid youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
             recipe.save()
             
             # could give a confirmation message
@@ -197,7 +223,6 @@ def add_recipe(request, *args, **kwargs):
             
             return index(request)
         else:
-            print("fuck youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
             print(form.errors)
 
    # context_dict = {'form': form}

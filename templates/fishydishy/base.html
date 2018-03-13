@@ -29,9 +29,8 @@
 
 
         <title>
-            Fishy Dishy!
             {% block title_block %}
-                How to Tango with Django!
+             Fishy Dishy!
             {% endblock %}
         </title>
 
@@ -50,7 +49,6 @@
                 <li><a href="{% url 'add_recipe' %}" style="font-size: 25px;">Add a Recipe</a></li>
                 <li><a href="{% url 'logout' %}?next=/fishydishy/" style="font-size: 25px;">Logout</a></li>
                 <li><a href="{% url 'user_profile' %}" style="font-size: 25px;">Your Profile</a></li>
-               <!-- <li><a href="{% url 'add_category' %}" style="font-size: 25px;">Add New Category</a></li> -->
                 {% else %}
                     <li><a href="{% url 'login' %}" style="font-size: 25px;">Login</a></li>
                 {% endif %}

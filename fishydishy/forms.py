@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from fishydishy.models import Page, Category, UserProfile, Recipe, Fish
+from fishydishy.models import Page, Category, UserProfile, Recipe, Fish, Review
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128,
@@ -78,6 +78,20 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = ('name', 'description', 'ingredients', 'method', 'fish', 'serves')
         exclude = ('user',)
+
+class CommentForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CommentForm, self).__init__(*args, **kwargs)
+
+    comment = forms.CharField(max_length=2000, help_text="Review", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
+    rating = forms.IntegerField()
+
+    class Meta:
+        model = Review
+        fields = ('comment', 'rating')
+        exclude = ('user', 'recipe')
 
 class FeedbackForm(forms.Form):
     subject = forms.CharField(label='Subject', max_length=100)
