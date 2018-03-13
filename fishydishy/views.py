@@ -18,6 +18,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
+import re
+from django.db.models import Q
 
 
 # Create your views here.
@@ -118,6 +120,19 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
 
     context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews}
     return render(request, 'fishydishy/recipe.html', context_dict)
+
+def search(request):        
+    if request.method == 'GET': # this will be GET now      
+        target =  request.GET.get('search') # do some research what it does
+        print(target, 'PRRIIIIIIIIIIIIIIIIIIIIIIIIIIIIIINT')
+        try:
+            status = Recipe.objects.filter(description__icontains=target) | Recipe.objects.filter(name__icontains=target) | Recipe.objects.filter(fish__name__startswith=target) # filter returns a list so you might consider skip except part
+        except Recipe.DoesNotExist:
+            print(error)
+        return render(request,"fishydishy/search.html",{"recipes":status})
+    else:
+        return render(request,"fishydishy/search.html",{})
+
 
 
 def show_category(request, category_name_slug):
