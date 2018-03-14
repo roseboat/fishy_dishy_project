@@ -10,17 +10,18 @@ User Profile
 <div class="row">
     <div class="col-lg-12" style="padding: 15px;"></div>
     <h1>Welcome {{user.username}}!</h1><br>
+
 </div>
 
 <div class="containter">
     <div class="row">
         <div class="col-lg-4" style="padding: 15px;">
             <center>
-                <img src="{{ MEDIA_URL }}{{ user.picture }}"
+                <img src="{{ MEDIA_URL }}{{ userStuff.picture }}"
                  alt="Picture of {{ user.username}}"/>
             </center>
             <br>
-            <p><b>Your webiste: </b>{{ user.website }}</p>
+            <p><b>Your webiste: </b>{{ userStuff.website }}</p>
         </div>
         <div class="col-lg-8" style="padding: 15px;">
             <h2>Your Recipes...</h2>

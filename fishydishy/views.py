@@ -273,10 +273,11 @@ def user_login(request):
 
 @login_required
 def user_profile(request):
-
+    u = User.objects.get(id=1)
+    u_p = u.userprofile
     context_dict = {}
     recipe_list = Recipe.objects.filter(user=request.user.username)
-    userStuff = UserProfile.objects.get(user=request.user)
+    userStuff = u_p
     context_dict['userStuff'] = userStuff
     context_dict['recipes'] = recipe_list
 
