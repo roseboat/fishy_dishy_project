@@ -27,7 +27,7 @@ class RecipeForm(forms.ModelForm):
     method = forms.CharField(max_length=5000, help_text="Enter your method", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
     fish = forms.ModelChoiceField(queryset=Fish.objects.all(),to_field_name="name", initial=0, help_text="Which fish does it use?") 
     serves = forms.IntegerField(help_text="How many servings?", min_value=1, max_value=10)
-    time = forms.IntegerField(help_text="How many servings?", min_value=1, max_value=999)
+    time = forms.IntegerField(help_text="How long will it take? (mins)", min_value=1, max_value=999)
     image = forms.ImageField(help_text="Upload an Image of Your Dish")
     #user = forms.CharField(widget=forms.HiddenInput())
     
