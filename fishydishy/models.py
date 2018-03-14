@@ -26,7 +26,6 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=9999, null=True)
     method = models.CharField(max_length=9999, null=True)
     fish = models.ForeignKey(Fish)
-    cost = models.FloatField(null=True)
     time = models.IntegerField(null=True)
     serves = models.IntegerField(null=True)
     avgRating = models.FloatField(null=True)
