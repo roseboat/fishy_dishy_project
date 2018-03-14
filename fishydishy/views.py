@@ -129,17 +129,21 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews}
     return render(request, 'fishydishy/recipe.html', context_dict)
 
-def search(request):        
+def search(request):
+    context_dict= {}
     if request.method == 'GET': # this will be GET now      
         target =  request.GET.get('search') # do some research what it does
         print(target, 'PRRIIIIIIIIIIIIIIIIIIIIIIIIIIIIIINT')
         try:
-            status = Recipe.objects.filter(description__icontains=target) | Recipe.objects.filter(name__icontains=target) | Recipe.objects.filter(fish__name__startswith=target) # filter returns a list so you might consider skip except part
+            recipeSearch = Recipe.objects.filter(description__icontains=target) | Recipe.objects.filter(name__icontains=target) | Recipe.objects.filter(fish__name__startswith=target) # filter returns a list so you might consider skip except part
+            fishSearch = Fish.objects.filter(name__icontains=target) | Fish.objects.filter(description__icontains=target) | Fish.objects.filter(fishType__icontains=target)
+            context_dict['recipeSearch'] = recipeSearch
+            context_dict['fishSearch'] = fishSearch           
         except Recipe.DoesNotExist:
             print(error)
-        return render(request,"fishydishy/search.html",{"recipes":status})
+        return render(request,"fishydishy/search.html",context_dict)
     else:
-        return render(request,"fishydishy/search.html",{})
+        return render(request,"fishydishy/search.html",context_dict)
 
 
 
