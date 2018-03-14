@@ -288,7 +288,8 @@ def user_profile(request):
     return render(request, 'fishydishy/user_profile.html', context_dict)
 
 def site_map(request):
-    return render(request, 'fishydishy/site_map.html', context_dict)
+
+    return render(request, 'fishydishy/site_map.html')
 
 
 # Use the login_required decorator to ensure only those logged in can

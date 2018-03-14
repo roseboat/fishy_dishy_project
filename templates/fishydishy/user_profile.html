@@ -17,9 +17,11 @@ User Profile
     <div class="row">
         <div class="col-lg-4" style="padding: 15px;">
             <center>
+                <div class="circular--portrait">
+                    <img src="{{ MEDIA_URL }}{{ userStuff.picture }}"
+                         alt="Picture of {{ user.username}}"/>
+                </div>
 
-                <img class="circle" src="{{ MEDIA_URL }}{{ userStuff.picture }}"
-                     alt="Picture of {{ user.username}}">
             </center>
             <br>
             <p><b>Your webiste: </b>{{ userStuff.website }}</p><br>
@@ -29,8 +31,7 @@ User Profile
             {% if recipes %}
             {% for e in recipes %}
             <ul>
-            <li><a href="/fishydishy/recipe/{{ e.slug }}/"><h3>{{ e.name }}</h3></a>
-            <p> {{ e.description }}</p></li>
+            <li><a href="/fishydishy/recipe/{{ e.slug }}/"><h3>{{ e.name }}</h3></a></li>
                 </ul>
             {% endfor %}
             {% else %}
