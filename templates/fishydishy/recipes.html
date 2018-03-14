@@ -7,58 +7,60 @@ Recipes
 
 {% block body_block %}
 
+<div class="header">
+		<center><img src="{% static "images/fishydishypageheader.jpg" %}" alt="Fishy Dishy Header" /></center>
+	</div>
 <div class="row">
     <div class="col-lg-12" style="padding: 15px;"></div>
-    <h1>Browse Recipes</h1><br>
 </div>
+<div class="row">
+    <div class="col-lg-2" style="padding: 15px;"></div>
 
-<div class="containter">
-    <div class="row">
-        <div class="col-lg-4" style="padding: 15px;">
+    <div class="col-lg-8" style="padding: 15px;">
 
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort By</button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Name</a></li>
-                    <li><a href="#">Rating</a></li>
-                    <li><a href="#">Date Uploaded</a></li>
-                </ul>
-            </div>
-
-            <br><br>
-            <h3>Browse By Fish:</h3><br>
-
-
-
-            <select id="dropDownMenu" class="btn dropdown-toggle" type="button" onchange="myFunction(this.value)">
-                {% for Fish in fishList %}
-                <center>
-                    <option value="{{ Fish.name }}">{{ Fish.name }}</option>
-                </center>
-                {% endfor %}
-            </select>
-            <br>
-
+        <div class="row">
+            <div class="col-lg-12" style="padding: 15px;"></div>
+            <h1>Browse Recipes</h1><br>
         </div>
 
-        <div class="col-lg-8" style="padding: 15px;">
-            <div>
-                {% for Recipe in recipeList %}
-                <div class="containter recipe {{ Recipe.fish }}">
-                    <div class="row">
-                        <div class="col-lg-5" style="padding: 15px;">
-                            <img class="fish-image" src="{{ MEDIA_URL }}/{{ Recipe.image }}"
-                                 alt="Picture of {{ Recipe.name}}"/></div>
-                        <div class="col-lg-7" style="padding: 15px;">
-                            <a href="{% url 'show_recipe' Recipe.slug %}"><h2>{{ Recipe.name }}</h2></a>
-                            <p>{{ Recipe.description }}</p><br>
-                            <p><b>Cooking time:</b><i> {{ Recipe.time }} minutes</i></p>
-                            <p><b>Fish used:</b> <i> {{ Recipe.fish }}</i></p>
-                        </div>
-                    </div>
-                    <hr>
+        <div class="containter">
+            <div class="row">
+                <div class="col-lg-4" style="padding: 15px;">
+
+                    <h3>Browse By Fish:</h3><br>
+
+                    <select id="dropDownMenu" class="btn dropdown-toggle" type="button"
+                            onchange="myFunction(this.value)">
+                        {% for Fish in fishList %}
+                        <center>
+                            <option value="{{ Fish.name }}">{{ Fish.name }}</option>
+                        </center>
+                        {% endfor %}
+                    </select>
+                    <br>
+
                 </div>
-                {% endfor %}
+
+                <div class="col-lg-8" style="padding: 15px;">
+                    <div>
+                        {% for Recipe in recipeList %}
+                        <div class="containter recipe {{ Recipe.fish }}">
+                            <div class="row">
+                                <div class="col-lg-5" style="padding: 15px;">
+                                    <img class="fish-image" src="{{ MEDIA_URL }}/{{ Recipe.image }}"
+                                         alt="Picture of {{ Recipe.name}}"/></div>
+                                <div class="col-lg-7" style="padding: 15px;">
+                                    <a href="{% url 'show_recipe' Recipe.slug %}"><h2>{{ Recipe.name }}</h2></a>
+                                    <p>{{ Recipe.description }}</p><br>
+                                    <p><b>Cooking time:</b><i> {{ Recipe.time }} minutes</i></p>
+                                    <p><b>Fish used:</b> <i> {{ Recipe.fish }}</i></p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

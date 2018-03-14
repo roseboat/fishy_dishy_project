@@ -2,25 +2,42 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Login
+Login
 {% endblock %}
 
 {% block body_block %}
-<center>
-<h1>Log In to Fishy Dishy!</h1> <br />
-<form id="login_form" method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br /> <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br /> <br />
-    <input type="submit" value="Submit" class="btn" /> <br /> <br />
-</form>
 
-<p>
-		Not a member?
-		<a href="{% url 'register' %}">Register here!</a>
-	</p><br><br>
+<div class="header">
+		<center><img src="{% static "images/fishydishypageheader.jpg" %}" alt="Fishy Dishy Header" /></center>
+	</div>
+<div class="row">
+    <div class="col-lg-12" style="padding: 15px;"></div>
+</div>
 
-    </center>
+<div class="row">
+    <div class="col-lg-2" style="padding: 15px;">
+    </div>
+    <div class="col-lg-8" style="padding: 15px;">
+
+            <center>
+                <h1>Log In to Fishy Dishy!</h1> <br/>
+                <form id="login_form" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    Username: <input type="text" name="username" value="" size="50"/>
+                    <br/> <br/>
+                    Password: <input type="password" name="password" value="" size="50"/>
+                    <br/> <br/>
+                    <input type="submit" value="Submit" class="btn"/> <br/> <br/>
+                </form>
+
+                <p>
+                    Not a member?
+                    <a href="{% url 'register' %}">Register here!</a>
+                </p><br><br>
+
+            </center>
+
+    </div>
+</div>
+<br><br><br>
 {% endblock %}
