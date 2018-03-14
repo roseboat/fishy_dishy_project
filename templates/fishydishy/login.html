@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
+<center>
 <h1>Log In to Fishy Dishy!</h1> <br />
 <form id="login_form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
@@ -13,11 +14,13 @@
     <br /> <br />
     Password: <input type="password" name="password" value="" size="50" />
     <br /> <br />
-    <input type="submit" value="Submit" /> <br /> <br />
+    <input type="submit" value="Submit" class="btn" /> <br /> <br />
 </form>
 
 <p>
 		Not a member?
 		<a href="{% url 'register' %}">Register here!</a>
 	</p><br><br>
+
+    </center>
 {% endblock %}

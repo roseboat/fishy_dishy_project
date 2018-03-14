@@ -74,7 +74,7 @@ def populate():
         "fish": "Halibut",
         "time": "20 mins",
         "serves": "4",
-        "image": "static/recipe_images/fishtacos.jpg"
+        "image": "recipe_images/fishtacos.jpg"
         }
     ]
 

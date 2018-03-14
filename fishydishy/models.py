@@ -4,35 +4,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
-
-# Create your models here.
-class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    views = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
-    slug = models.SlugField(unique=True, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
-
-    class Meta:
-        verbose_name_plural = 'Categories'
-
-    def __str__(self):  # For Python 2, use __unicode__ too
-        return self.name
-
-
-class Page(models.Model):
-    category = models.ForeignKey(Category)
-    title = models.CharField(max_length=128)
-    url = models.URLField()
-    views = models.IntegerField(default=0)
-
-    def __str__(self):  # For Python 2, use __unicode__ too
-        return self.title
-
-
 class Fish(models.Model):
     name = models.CharField(max_length=128, unique=True)
     fishType = models.CharField(max_length=128)
@@ -56,14 +27,18 @@ class Recipe(models.Model):
     method = models.CharField(max_length=9999, null=True)
     fish = models.ForeignKey(Fish)
     cost = models.FloatField(null=True)
-    time = models.CharField(max_length=128, null=True)
+    time = models.IntegerField(null=True)
     serves = models.IntegerField(null=True)
     avgRating = models.FloatField(null=True)
     slug = models.SlugField(null=True, blank=True)
-    image = models.ImageField(upload_to='recipe_images', null=True)
+    image = models.ImageField(upload_to='recipe_images', blank=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        if self.time<=0:
+            self.time=1
+        if self.serves<=0:
+            self.serves=1
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):

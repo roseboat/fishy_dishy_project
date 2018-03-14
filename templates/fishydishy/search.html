@@ -9,17 +9,34 @@
 
 {% block body_block %}
 
- <h1>Results...</h1><br><br>
+ <h1>We found...</h1><br><br>
 
-{% if recipes %}
-{% for r in recipes %} 
+{% if fishSearch %}
+<strong>fish:</strong>
+<br>
+{% for f in fishSearch %} 
     
-    <img src="{{r.image}}" alt="No Image"></a>
+    <!-- <img src="{{f.image}}" alt="No Image"></a> -->
+    <p>{{f.name}}</p>
+    <p>{{f.description}}</p>   
+{% endfor %}
+{% else %}
+{% endif %}
+
+<br>
+<br>
+
+{% if recipeSearch %}
+<strong>recipes:</strong>
+<br>
+{% for r in recipeSearch %} 
+    
+    <!-- <img src="{{r.image}}" alt="No Image"></a> -->
     <p>{{r.name}}</p>
     <p>{{r.description}}</p>   
 {% endfor %}
 {% else %}
-	None.
+	Nothing.
 {% endif %}
 
 {% endblock %}

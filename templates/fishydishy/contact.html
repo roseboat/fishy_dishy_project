@@ -2,26 +2,35 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Contact
+Contact
 {% endblock %}
 
 {% block body_block %}
+<center>
     <h1>Contact Us!</h1>
     <div class="infoarea">
         <p>
             We are a small team of students at the University of Glasgow <br/>
-            175 University Avenue <br/>
-            Glasgow <br/>
-            G12 8PW<br/>
-            If you'd like to contact us please use the form below to send an email.
+            If you'd like to contact us please use the form below to send an email.<br><br>
         </p>
     </div>
     <div class="feedback">
         <form id="contact_form" method="post" action="/fishydishy/contact/">
+
             {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {{ hidden.errors }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
             {{ field.errors }}
-            {{ form.as_p }}
-            <input type="submit" name="Send!" value="Send!" />
+            {{ field.help_text }}<br>
+            {{ field }}<br><br>
+            {% endfor %}
+
+            <input type="submit" class="btn" name="Send!" value="Send!"/>
         </form>
+        <br><br>
     </div>
+</center>
 {% endblock %}
