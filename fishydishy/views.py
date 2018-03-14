@@ -103,8 +103,8 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
                 a.recipe=Recipe.objects.get(slug=recipe_name_slug)
                 a.user = request.user
                 a.save()
-                return HttpResponseRedirect("")
-                #return show_recipe(request, recipe_name_slug)
+                return HttpResponseRedirect(post.get_absolute_url())
+                #return show_recipe(recipe_name_slug) broken
             else:
                 print(form.errors)
 
@@ -284,7 +284,7 @@ def user_profile(request):
     return render(request, 'fishydishy/user_profile.html', context_dict)
 
 def site_map(request):
-    return render(request, 'fishydishy/site_map.html', context_dict)
+    return render(request, 'fishydishy/site_map.html')
 
 
 # Use the login_required decorator to ensure only those logged in can
