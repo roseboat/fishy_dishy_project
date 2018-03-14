@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
+<center>
         <h1>Add a Recipe</h1><br>
         <div>
             <form id="recipe_form" method="post" action="/fishydishy/add_recipe/">
@@ -20,7 +21,8 @@
                     {{ field }}<br><br>
                 {% endfor %}
 		
-                <input type="submit" name="submit" value="Create Recipe" /><br><br>
+                <input type="submit" name="submit" value="Create Recipe" class="btn"/><br><br>
             </form>
         </div>
+    </center>
 {% endblock %}

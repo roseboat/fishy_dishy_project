@@ -2,23 +2,15 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from fishydishy.models import Category
-from fishydishy.models import Page
-from fishydishy.models import Fish
-from fishydishy.models import Recipe
-from fishydishy.models import Review
-from fishydishy.models import UserProfile
+from fishydishy.models import Fish, Recipe, Review, UserProfile
 from django.contrib.auth.models import User
-from fishydishy.forms import CategoryForm
-from fishydishy.forms import PageForm, FeedbackForm
-from fishydishy.forms import UserForm, UserProfileForm, RecipeForm, CommentForm
+from fishydishy.forms import UserForm, UserProfileForm, RecipeForm, CommentForm, FeedbackForm
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
-import re
 from django.db.models import Q
 
 
@@ -31,12 +23,9 @@ def index(request):
     # that will be passed to the template engine.
 
     request.session.set_test_cookie()
-    # this queries Category model to retrieve top five cate
-    category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('-views')[:5]
     recipe_list = Recipe.objects.order_by('-avgRating')[:5]
 
-    context_dict = {'categories': category_list, 'pages': page_list, 'recipes': recipe_list}
+    context_dict = {'recipes': recipe_list}
 
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -135,83 +124,6 @@ def search(request):
 
 
 
-def show_category(request, category_name_slug):
-    # create a context dictionary which we can pass to template rendering engine
-    context_dict = {}
-
-    try:
-        # Can we find a category name slug with the given name?
-        # If we can't, the .get() method raises a DoesNotExist exception.
-        # So the .get() method returns one model instance or raises an exception.
-        category = Category.objects.get(slug=category_name_slug)
-
-        # Retrieve all of the assosicated pages.
-        # Note that filter() will return a list of page objects or an empty list
-        pages = Page.objects.filter(category=category)
-
-        # adds our results list to the template context under name pages.
-        context_dict['pages'] = pages
-        # We also add the category object from
-        # the database to the context dictionary
-        # well use this in the template to verify that the categories exists
-        context_dict['category'] = category
-    except Category.DoesNotExist:
-        # We get here if we didnt find the specified category.
-        # Dont do anything
-        # the templates will display the "no category' message
-        context_dict['category'] = None
-        context_dict['pages'] = None
-
-        # Go render the response and return it to the client
-    return render(request, 'fishydishy/category.html', context_dict)
-
-
-@login_required
-def add_category(request):
-    form = CategoryForm()
-
-    # HTTP POST
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-
-        # provided valid form?
-        if form.is_valid():
-            # save new cate to DB
-            form.save(commit=True)
-            # could give a confirmation message
-            # but recent category is added on index page
-            # and direct user back to index page
-            return index(request)
-        else:
-            print(form.errors)
-
-    return render(request, 'fishydishy/add_category.html', {'form': form})
-
-
-@login_required
-def add_page(request, category_name_slug):
-    try:
-        category = Category.objects.get(slug=category_name_slug)
-    except Category.DoesNotExist:
-        category = None
-
-    form = PageForm()
-    if request.method == 'POST':
-        form = PageForm(request.POST)
-        if form.is_valid():
-            if category:
-                page = form.save(commit=False)
-                page.category = category
-                page.views = 0
-                page.save()
-                return show_category(request, category_name_slug)
-            else:
-                print(form.errors)
-
-    context_dict = {'form': form, 'category': category}
-    return render(request, 'fishydishy/add_page.html', context_dict, )
-
-
 @login_required
 def add_recipe(request, *args, **kwargs):
     print(request.POST)
@@ -227,7 +139,7 @@ def add_recipe(request, *args, **kwargs):
 
         #user=
         recipe= Recipe(user=request.user.username)
-        form= RecipeForm(request.POST, instance=recipe)
+        form= RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             # save new cate to DB
             recipe.save()
