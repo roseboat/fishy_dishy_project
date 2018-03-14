@@ -11,11 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
-<<<<<<< HEAD
-import re
 import json
-=======
->>>>>>> f65ab157e149d439173527e80c61a7a08f65a108
+import datetime
 from django.db.models import Q
 
 
@@ -109,9 +106,11 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
                 a.user = request.user
                 a.save()
 
-                info_dict = form.cleaned_data
-                username = request.user.username
-                info_dict['user'] = username
+
+                info_dict = {"comment": a.comment, "user": request.user.username, "date": a.date_posted.strftime('%B %d, %Y, %I:%M %p')}
+                #info_dict = form.cleaned_data
+                #username = request.user.username
+                #info_dict['user'] = username
                 return HttpResponse(json.dumps(info_dict), content_type="application/json")
                 #return show_recipe(request, recipe_name_slug)
             else:

@@ -44,7 +44,7 @@
 
         <center>
             <h1>Comments...</h1><br><br>
-
+            <div class="comment_section">
             {% if reviews %}
 
 
@@ -57,8 +57,9 @@
             {% endfor %}
 
             {% else %}
-            <p>Nobody has commented on this recipe yet.</p>
+            <p id="No_comments">Nobody has commented on this recipe yet.</p>
             {% endif %}
+            </div>
             <br><br>
 
             {% if user.is_authenticated %}
@@ -73,10 +74,13 @@
                 {{ hidden }}
                 {{ hidden.errors }}
                 {% endfor %}
+
                 {% for field in form.visible_fields %}
+
                 {{ field.errors }}
                 {{ field.help_text }}<br>
                 {{ field }}<br><br>
+
                 {% endfor %}
 
                 <input type="submit" name="submit" value="Post Comment" class="btn"/><br><br>
