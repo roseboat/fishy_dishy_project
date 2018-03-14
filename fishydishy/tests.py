@@ -7,8 +7,12 @@ def add_recipe(name, description, ingredients, method, fish, time, serves, image
     r = Recipe.objects.get_or_create(name=name, description=description, ingredients=ingredients, method=method,
                                      fish=fish, time=time, serves=serves, image=image)
     return r
-# this test checks that the minimum preparation time will be above 0
-class RecipeTimeTest(TestCase):
+
+
+#model tests for Recipes
+class RecipeMethodTest(TestCase):
+    
+    # this test checks that the minimum preparation time will be above 0
     def test_ensure_time_is_above_zero_minutes(self):
 
         newFish= Fish(name='Salmon',  fishType='Oily', description='None', area='The Sea', sustainability=3)
@@ -19,8 +23,7 @@ class RecipeTimeTest(TestCase):
         
         self.assertEqual((recipe.time >0), True)
 
-# this test checks that the minimum number of serving will be at least 1
-class RecipeServeTest(TestCase):
+    # this test checks that the minimum number of serving will be at least 1
     def test_ensure_serve_is_at_least_for_1(self):
 
         newFish= Fish(name='Salmon',  fishType='Oily', description='None', area='The Sea', sustainability=3)
@@ -31,6 +34,18 @@ class RecipeServeTest(TestCase):
         
         self.assertEqual((recipe.serves >0), True)
 
+    # this test checks if an appropriate slug line is created
+    def test_url_slug_line_is_valid(self):
+
+        newFish= Fish(name='Salmon',  fishType='Oily', description='None', area='The Sea', sustainability=3)
+        newFish.save()
+        
+        recipe= Recipe(name='Fishy Dishy Special', fish=newFish, serves=0, time=0)
+        recipe.save()
+
+        self.assertEqual (recipe.slug, 'fishy-dishy-special')
+
+# views test for Recipes
 class RecipeViewTests(TestCase):
 
     def test_view_with_no_recipes(self):

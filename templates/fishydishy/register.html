@@ -2,27 +2,48 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Registration
+Registration
 {% endblock %}
 
 {% block body_block %}
-    <h1>Register for Fishy Dishy!</h1>
-    {% if registered %}
-       <strong>Thank you for Registering!</strong><br>
-        <a href="{% url 'index' %}">Return to the Fishy Dishy homepage.</a><br />
-    {% else %}
-        <strong>Registration</strong><br />
-        <form id="user_form" method="post" action="{% url 'register' %}"
-                enctype="multipart/form-data">
-        
-        {% csrf_token %}
-        
-        <!-- Display each form -->
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
 
-        <!-- Provide a button to click to submit form. -->
-        <input type="submit" name="submit" value="Register" class="btn" />
-    </form><br><br>
-    {% endif %}
+<div class="header">
+    <center><img src="{% static "images/fishydishypageheader.jpg" %}" alt="Fishy Dishy Header" /></center>
+</div>
+<div class="row">
+    <div class="col-lg-12" style="padding: 15px;"></div>
+</div>
+<div class="row">
+    <div class="col-lg-2" style="padding: 15px;">
+    </div>
+    <div class="col-lg-8" style="padding: 15px;">
+
+
+            <h1>Register for Fishy Dishy!</h1><br><br>
+            {% if registered %}
+            <strong>Thank you for Registering!</strong><br>
+            <a href="{% url 'index' %}">Return to the Fishy Dishy homepage.</a><br/>
+            {% else %}
+
+            <form id="user_form" method="post" action="{% url 'register' %}"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- Display each form -->
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+
+                <!-- Provide a button to click to submit form. -->
+                <br>
+                <input type="submit" name="submit" value="Register!" class="btn"/>
+            </form>
+            <br><br>
+            {% endif %}
+
+            <br><br><br>
+
+    </div>
+</div>
+
 {% endblock %}

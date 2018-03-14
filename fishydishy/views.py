@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
+import json
 from django.db.models import Q
 from django.db.models import Avg
 
@@ -105,8 +106,14 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
                 a.recipe=Recipe.objects.get(slug=recipe_name_slug)
                 a.user = request.user
                 a.save()
-                return HttpResponseRedirect(post.get_absolute_url())
-                #return show_recipe(recipe_name_slug) broken
+
+
+                info_dict = {"comment": a.comment, "user": request.user.username, "date": a.date_posted.strftime('%B %d, %Y, %I:%M %p')}
+                #info_dict = form.cleaned_data
+                #username = request.user.username
+                #info_dict['user'] = username
+                return HttpResponse(json.dumps(info_dict), content_type="application/json")
+                #return show_recipe(request, recipe_name_slug)
             else:
                 print(form.errors)
 
