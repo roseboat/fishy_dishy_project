@@ -74,7 +74,7 @@ class Review(models.Model):
     recipe = models.ForeignKey(Recipe)
     user = models.ForeignKey(User)
     rating = models.IntegerField(blank=True, default = 5)
-    comment = models.CharField
+    comment = models.CharField(max_length=2000, null=True)
     date_posted = models.DateTimeField(auto_now=True)
 
     def __str__(self):

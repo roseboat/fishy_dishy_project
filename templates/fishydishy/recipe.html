@@ -60,8 +60,22 @@
             <input type="submit" name="submit" value="Post Comment"/><br><br>
         </form>
         {% else %}
+	{% endif %}
+
+<h3><b>Comments</b></h3><br>
+	{% if reviews %}
+	<ul>
+		{% for review in reviews %} 
+            		<li>{{ review.comment }}</li>
+			<li>{{ review.rating }}</li>
+			<li>{{ review.user }}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<strong>Nobody has commented on this recipe yet.</strong> 
+	{% endif %}
     </center>
-    {% endif %}
+    
 
 
 

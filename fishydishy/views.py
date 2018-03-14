@@ -101,13 +101,21 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
 
         form = CommentForm()
 
+        context_dict['reviews'] = reviews
+
         if request.method == 'POST':
             # user posted the form
+            
+            form.recipe = recipe
             form = CommentForm(request.POST)
-
+            
             if form.is_valid():
-                com = form.save(commit=True)
-                return show_recipe(request, recipe_name_slug)
+                a = form.save(commit=False)
+                a.recipe=Recipe.objects.get(slug=recipe_name_slug)
+                a.user = request.user
+                a.save()
+                return HttpResponseRedirect("")
+                #return show_recipe(request, recipe_name_slug)
             else:
                 print(form.errors)
 
@@ -116,7 +124,7 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     except Recipe.DoesNotExist:
 
         context_dict['recipe'] = None
-        context_dict['recipe'] = None
+        context_dict['reviews'] = None
 
     context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews}
     return render(request, 'fishydishy/recipe.html', context_dict)
