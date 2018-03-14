@@ -5,6 +5,10 @@
 Find a Fish!
 {% endblock %}
 
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/fish_finder.js' %}"></script>
+{% endblock %}
+
 {% block body_block %}
 
 <body onload="getLocation()" xmlns="http://www.w3.org/1999/html">
@@ -66,29 +70,5 @@ Find a Fish!
         </div>
     </div>
 </div>
-
-
-<script>
-
-    $('#radioButtons input').on('change', function () {
-
-        var query = $('input[name="options"]:checked', '#radioButtons').val();
-
-        if (query === "all") {
-            $(".fish").show();
-        } else {
-            $(".fish").hide();
-            var selector = "." + query;
-            $(selector).show();
-        }
-    });
-
-    function myFunction(num) {
-        num = "." + num;
-        $(".fish").hide();
-        $(num).show();
-    }
-
-</script>
 
 {% endblock %}
