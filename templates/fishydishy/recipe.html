@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-lg-12" style="padding: 15px;"></div>
-    <h1>{{ recipe.name }}</h1>
+    <h1>{{ recipe.name }} {% if reviews %} {% for i in scoreRange %} &#9734; {% endfor %} {% endif %}</h1>
 </div>
 
 <div class="containter">
@@ -19,6 +19,8 @@
                  alt="Picture of {{ recipe.name}}"/>
 
             <h3><b>Ingredients</b></h3><br>
+		
+
             {{ recipe.ingredients }}
 
 

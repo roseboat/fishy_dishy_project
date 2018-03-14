@@ -12,6 +12,7 @@ from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
 from django.db.models import Q
+from django.db.models import Avg
 
 
 # Create your views here.
@@ -87,7 +88,8 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     try:
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         reviews = Review.objects.filter(recipe=recipe).order_by('-date_posted')
-
+        scoreAvg = Review.objects.filter(recipe=recipe).aggregate(Avg('rating'))['rating__avg']
+        scoreRange = range(1, int(scoreAvg)+1)
         form = CommentForm()
 
         context_dict['reviews'] = reviews
@@ -115,7 +117,7 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
         context_dict['recipe'] = None
         context_dict['reviews'] = None
 
-    context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews}
+    context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews, 'scoreRange' : scoreRange}
     return render(request, 'fishydishy/recipe.html', context_dict)
 
 def search(request):
