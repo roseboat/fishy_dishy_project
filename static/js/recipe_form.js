@@ -2,7 +2,7 @@ $("#review_form").on('submit', function(event){
    event.preventDefault();
    console.log("form submitted");
    if ( $("#No_comments").length ) {
-       $("No_comments").hide();
+       $("#No_comments").hide();
    }
    create_review();
 });

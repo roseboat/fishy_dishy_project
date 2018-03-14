@@ -12,7 +12,6 @@ from django.contrib.auth import logout
 from django.core.mail import send_mail
 from datetime import datetime
 import json
-import datetime
 from django.db.models import Q
 
 
