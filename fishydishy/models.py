@@ -26,8 +26,7 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=9999, null=True)
     method = models.CharField(max_length=9999, null=True)
     fish = models.ForeignKey(Fish)
-    cost = models.FloatField(null=True)
-    time = models.CharField(max_length=128, null=True)
+    time = models.IntegerField(null=True)
     serves = models.IntegerField(null=True)
     avgRating = models.FloatField(null=True)
     slug = models.SlugField(null=True, blank=True)
@@ -35,6 +34,10 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
+        if self.time<=0:
+            self.time=1
+        if self.serves<=0:
+            self.serves=1
         super(Recipe, self).save(*args, **kwargs)
 
     def __str__(self):
