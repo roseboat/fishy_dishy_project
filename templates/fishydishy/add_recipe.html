@@ -9,7 +9,7 @@
 <center>
         <h1>Add a Recipe</h1><br>
         <div>
-            <form id="recipe_form" method="post" action="/fishydishy/add_recipe/">
+            <form id="recipe_form" method="post" action="/fishydishy/add_recipe/" enctype="multipart/form-data">
                 {% csrf_token %}
 		{% for hidden in form.hidden_fields %}
 		    {{ hidden }}

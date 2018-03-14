@@ -90,13 +90,21 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
 
         form = CommentForm()
 
+        context_dict['reviews'] = reviews
+
         if request.method == 'POST':
             # user posted the form
+            
+            form.recipe = recipe
             form = CommentForm(request.POST)
-
+            
             if form.is_valid():
-                com = form.save(commit=True)
-                return show_recipe(request, recipe_name_slug)
+                a = form.save(commit=False)
+                a.recipe=Recipe.objects.get(slug=recipe_name_slug)
+                a.user = request.user
+                a.save()
+                return HttpResponseRedirect("")
+                #return show_recipe(request, recipe_name_slug)
             else:
                 print(form.errors)
 
@@ -105,7 +113,7 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     except Recipe.DoesNotExist:
 
         context_dict['recipe'] = None
-        context_dict['recipe'] = None
+        context_dict['reviews'] = None
 
     context_dict = {'form': form, 'recipe': recipe, 'reviews':reviews}
     return render(request, 'fishydishy/recipe.html', context_dict)
@@ -167,7 +175,8 @@ def register(request):
         # Attempt to grab info from the raw form information
         # Note that we make use of both Userform and UserProfileForm
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
+        profile_form = UserProfileForm(request.POST, request.FILES)
+
 
         # If the two forms are valid then..
         if user_form.is_valid() and profile_form.is_valid():
@@ -260,13 +269,17 @@ def user_login(request):
 
 @login_required
 def user_profile(request):
-    recipe_list = Recipe.objects.filter(user=request.user.username)
-    context_dict = {'recipes': recipe_list}
 
-    return render(request, 'fishydishy/user_profile.html', context=context_dict)
+    context_dict = {}
+    recipe_list = Recipe.objects.filter(user=request.user.username)
+    userStuff = UserProfile.objects.get(user=request.user)
+    context_dict['userStuff'] = userStuff
+    context_dict['recipes'] = recipe_list
+
+    return render(request, 'fishydishy/user_profile.html', context_dict)
 
 def site_map(request):
-    return render(request, 'fishydishy/site_map.html', {})
+    return render(request, 'fishydishy/site_map.html', context_dict)
 
 
 # Use the login_required decorator to ensure only those logged in can

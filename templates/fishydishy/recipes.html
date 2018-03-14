@@ -57,7 +57,7 @@ Recipes
                 <div class="containter recipe {{ Recipe.fish }}">
                     <div class="row">
                         <div class="col-lg-5" style="padding: 15px;">
-                            <img class="fish-image" src="/{{ Recipe.image }}"
+                            <img class="fish-image" src="{{ MEDIA_URL }}/{{ Recipe.image }}"
                                  alt="Picture of {{ Recipe.name}}"/></div>
                         <div class="col-lg-7" style="padding: 15px;">
                             <a href="{% url 'show_recipe' Recipe.slug %}"><h2>{{ Recipe.name }}</h2></a>

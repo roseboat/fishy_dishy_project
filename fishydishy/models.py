@@ -31,7 +31,7 @@ class Recipe(models.Model):
     serves = models.IntegerField(null=True)
     avgRating = models.FloatField(null=True)
     slug = models.SlugField(null=True, blank=True)
-    image = models.ImageField(upload_to='recipe_images', null=True)
+    image = models.ImageField(upload_to='recipe_images', blank=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -45,7 +45,7 @@ class Review(models.Model):
     recipe = models.ForeignKey(Recipe)
     user = models.ForeignKey(User)
     rating = models.IntegerField(blank=True, default = 5)
-    comment = models.CharField
+    comment = models.CharField(max_length=2000, null=True)
     date_posted = models.DateTimeField(auto_now=True)
 
     def __str__(self):

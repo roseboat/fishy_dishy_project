@@ -15,7 +15,7 @@
 <div class="containter">
     <div class="row">
         <div class="col-lg-5" style="padding: 15px;">
-            <img class="fish-image" src="/{{ recipe.image }}"
+            <img class="fish-image" src="{{ MEDIA_URL }}/{{ recipe.image }}"
                  alt="Picture of {{ recipe.name}}"/>
 
             <h3><b>Ingredients</b></h3><br>
@@ -40,38 +40,51 @@
 </div><br><br>
 
 <div class="row">
-    <div class="col-lg-12" style="padding: 15px;"></div>
+    <div class="col-lg-12" style="padding: 15px;">
 
-    <center>
-        <h1>Comments...</h1><br><br>
+        <center>
+            <h1>Comments...</h1><br><br>
+
+            {% if reviews %}
 
 
+            {% for review in reviews %}
 
-    {% if user.is_authenticated %}
+            <p>{{ review.comment }}<br></p>
+            <p style="color:#2e9fb5;"><b> - {{ review.user }}</b><br></p>
 
-        <h1>Leave a Comment...</h1><br>
-
-        <form id="review_form" method="post" action="/fishydishy/recipe/{{ recipe.slug }}/">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-            {{ hidden.errors }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}<br>
-            {{ field }}<br><br>
             {% endfor %}
 
-            <input type="submit" name="submit" value="Post Comment"/><br><br>
-        </form>
+            {% else %}
+            <p>Nobody has commented on this recipe yet.</p>
+            {% endif %}
+            <br><br>
 
-    {% endif %}
+            {% if user.is_authenticated %}
 
+            <h1>Leave a Comment...</h1>
 
-    </center>
+            <form id="review_form" method="post" action="/fishydishy/recipe/{{ recipe.slug }}/">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+                {{ hidden.errors }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}<br>
+                {{ field }}<br><br>
+                {% endfor %}
 
+                <input type="submit" name="submit" value="Post Comment" class="btn"/><br><br>
+            </form>
 
+            {% else %}
+            {% endif %}
+
+        </center>
+
+    </div>
 </div>
 
 {% endblock %}

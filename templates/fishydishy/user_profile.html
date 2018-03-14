@@ -16,7 +16,8 @@ User Profile
     <div class="row">
         <div class="col-lg-4" style="padding: 15px;">
             <center>
-                {{ user.picture }}
+                <img src="{{ MEDIA_URL }}{{ user.picture }}"
+                 alt="Picture of {{ user.username}}"/>
             </center>
             <br>
             <p><b>Your webiste: </b>{{ user.website }}</p>
