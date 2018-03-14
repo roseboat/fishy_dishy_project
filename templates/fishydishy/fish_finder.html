@@ -10,65 +10,76 @@ Find a Fish!
 {% endblock %}
 
 {% block body_block %}
-
-<body onload="getLocation()" xmlns="http://www.w3.org/1999/html">
+<div class="header">
+		<center><img src="{% static 'images/fishydishypageheader.jpg' %}" alt="Fishy Dishy Header" /></center>
+	</div>
 <div class="row">
     <div class="col-lg-12" style="padding: 15px;"></div>
-    <h1>FishFinder</h1>
 </div>
+<div class="row">
+    <div class="col-lg-2" style="padding: 15px;">
+    </div>
+    <div class="col-lg-8" style="padding: 15px;">
 
-<div class="containter">
-    <div class="row">
-        <div class="col-lg-4" style="padding: 15px;">
-
-            <h3>Search by type:</h3><br>
-            <div>
-                <form id="radioButtons">
-                    <label>
-                        <input type="radio" name="options" value="oily_fish"> Oily Fish</label><br>
-                    <label>
-                        <input type="radio" name="options" value="white_fish"> White Fish</label><br>
-                    <label>
-                        <input type="radio" name="options" value="flat_fish"> Flat Fish</label><br>
-                    <label>
-                        <input type="radio" name="options" value="shell_fish"> Shellfish</label><br>
-                    <label>
-                        <input type="radio" name="options" value="all"> All</label><br>
-                </form>
-            </div>
-
-            <br><br>
-            <h3>Search by sustainability:</h3><br>
-
-            <div>
-                <button class="btn btn5" onclick="myFunction(5)" value=5> 5</button>
-                <button class="btn btn4" onclick="myFunction(4)" value=4> 4</button>
-                <button class="btn btn3" onclick="myFunction(3)" value=3> 3</button>
-                <button class="btn btn2" onclick="myFunction(2)" value=2> 2</button>
-                <button class="btn btn1" onclick="myFunction(1)" value=1> 1</button>
-                </div>
+        <div class="row">
+            <div class="col-lg-12" style="padding: 15px;"></div>
+            <h1>FishFinder</h1>
         </div>
 
-        <div class="col-lg-8" style="padding: 15px;">
-            <div>
-                {% for Fish in fishList %}
-                <div class="containter fish {{ Fish.fishType }} {{ Fish.sustainability }}">
-                    <div class="row">
-                            <div class="col-lg-5" style="padding: 15px;">
-                                <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/></div>
-                            <div class="col-lg-7" style="padding: 15px;">
-                                <h2>{{ Fish.name }}</h2>
-                                <p>{{ Fish.description }}</p><br>
-                                <p><b>Average Sustainability Rating:</b><i> {{ Fish.sustainability }}</i></p>
-                                <p><b>Area:</b> <i> {{ Fish.area }}</i></p>
-                            </div>
+        <div class="containter">
+            <div class="row">
+                <div class="col-lg-4" style="padding: 15px;">
+
+                    <h3>Search by type:</h3><br>
+                    <div>
+                        <form id="radioButtons">
+                            <label>
+                                <input type="radio" name="options" value="oily_fish"> Oily Fish</label><br>
+                            <label>
+                                <input type="radio" name="options" value="white_fish"> White Fish</label><br>
+                            <label>
+                                <input type="radio" name="options" value="flat_fish"> Flat Fish</label><br>
+                            <label>
+                                <input type="radio" name="options" value="shell_fish"> Shellfish</label><br>
+                            <label>
+                                <input type="radio" name="options" value="all"> All</label><br>
+                        </form>
                     </div>
-                    <hr>
+
+                    <br><br>
+                    <h3>Search by sustainability:</h3><br>
+
+                    <div>
+                        <button class="btn btn5" onclick="myFunction(5)" value=5> 5</button>
+                        <button class="btn btn4" onclick="myFunction(4)" value=4> 4</button>
+                        <button class="btn btn3" onclick="myFunction(3)" value=3> 3</button>
+                        <button class="btn btn2" onclick="myFunction(2)" value=2> 2</button>
+                        <button class="btn btn1" onclick="myFunction(1)" value=1> 1</button>
+                    </div>
                 </div>
-                {% endfor %}
+
+                <div class="col-lg-8" style="padding: 15px;">
+                    <div>
+                        {% for Fish in fishList %}
+                        <div class="containter fish {{ Fish.fishType }} {{ Fish.sustainability }}">
+                            <div class="row">
+                                <div class="col-lg-5" style="padding: 15px;">
+                                    <img class="fish-image" src="/{{ Fish.image }}" alt="Picture of {{ Fish.name}}"/>
+                                </div>
+                                <div class="col-lg-7" style="padding: 15px;">
+                                    <h2>{{ Fish.name }}</h2>
+                                    <p>{{ Fish.description }}</p><br>
+                                    <p><b>Average Sustainability Rating:</b><i> {{ Fish.sustainability }}</i></p>
+                                    <p><b>Area:</b> <i> {{ Fish.area }}</i></p>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
