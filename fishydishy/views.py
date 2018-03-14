@@ -276,8 +276,9 @@ def user_profile(request):
 
     context_dict = {}
     recipe_list = Recipe.objects.filter(user=request.user.username)
-    userStuff = UserProfile.objects.get(user=request.user)
-    context_dict['userStuff'] = userStuff
+    # userStuff = UserProfile.objects.get(user=request.user)
+    # context_dict['userStuff'] = userStuff
+
     context_dict['recipes'] = recipe_list
 
     return render(request, 'fishydishy/user_profile.html', context_dict)
