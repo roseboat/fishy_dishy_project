@@ -72,8 +72,8 @@ def populate():
         "ingredients": "Vegetable oil, for frying\n 1/4 red cabbage, thinly sliced (about 1 1/2 cups)\n 1/2 cup fresh cilantro, roughly chopped\nJuice of 1 lime, plus wedges for serving\n2 tablespoons honey or agave nectar\n1/2 cup mayonnaise\nKosher salt\n12 corn tortillas\n3/4 cup all-purpose flour\n1/2 teaspoon chili powder\nFreshly ground pepper\n1 1/4 pounds skinless halibut fillet, cut into 2-by-1/2-inch pieces\n1 Hass avocado\n1/2 cup fresh salsa",
         "method": "Heat about 3 inches vegetable oil in a medium pot over medium-low heat until a deep-fry thermometer registers 375 degrees F. Meanwhile, toss the cabbage, cilantro, lime juice, honey and mayonnaise in a bowl. Season the slaw with salt.\nWarm the tortillas in a skillet over medium-low heat or wrap in a damp cloth and microwave 25 seconds. Wrap in a towel to keep warm.\nMix the flour, chili powder, and salt and pepper to taste in a shallow bowl. Dredge the fish in the flour mixture, then fry in batches until golden and just cooked through, 2 to 3 minutes. Transfer with a slotted spoon to a paper-towel-lined plate to drain. Season with salt.\nHalve, pit and slice the avocado. Fill the tortillas with the fish, avocado, slaw and salsa. Serve with lime wedges.",
         "fish": "Halibut",
-        "time": "20",
-        "serves": "4",
+        "time": 20,
+        "serves": 4,
         "image": "recipe_images/fishtacos.jpg"
         }
     ]
