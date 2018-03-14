@@ -79,7 +79,7 @@ class RecipeForm(forms.ModelForm):
         fields = ('name', 'description', 'ingredients', 'method', 'fish', 'serves')
         exclude = ('user',)
 
-class CommentForm(forms.Form):
+class CommentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
