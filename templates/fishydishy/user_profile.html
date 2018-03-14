@@ -17,26 +17,23 @@ User Profile
     <div class="row">
         <div class="col-lg-4" style="padding: 15px;">
             <center>
-                <img src="{{ MEDIA_URL }}{{ userStuff.picture }}"
-                 alt="Picture of {{ user.username}}"/>
+                <div class="circular--portrait">
+                    <img src="{{ MEDIA_URL }}{{ userStuff.picture }}"
+                         alt="Picture of {{ user.username}}"/>
+                </div>
+
             </center>
             <br>
-            <p><b>Your webiste: </b>{{ userStuff.website }}</p>
+            <p><b>Your webiste: </b>{{ userStuff.website }}</p><br>
         </div>
         <div class="col-lg-8" style="padding: 15px;">
-            <h2>Your Recipes...</h2>
+            <h2>Your Recipes...</h2><br>
             {% if recipes %}
+            {% for e in recipes %}
             <ul>
-                {% for e in recipes %}
-                <a href="/fishydishy/recipe/{{ e.slug }}/"><h2>{{ e.name }}</h2></a>
-                <br/>
-                <p> Decription: {{ e.description }}</p>
-                <p> Ingredients: {{ e.ingredients }}</p>
-                <p> Method: {{ e.method }}</p>
-                <p> Fish: {{ e.fish }}</p>
-                <p> Serves: {{ e.serves }}</p>
-                {% endfor %}
-            </ul>
+            <li><a href="/fishydishy/recipe/{{ e.slug }}/"><h3>{{ e.name }}</h3></a></li>
+                </ul>
+            {% endfor %}
             {% else %}
             You have no recipes yet. Click <a href="{% url 'add_recipe' %}">here</a> to upload one!
             {% endif %}

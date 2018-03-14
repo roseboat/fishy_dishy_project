@@ -277,6 +277,10 @@ def user_profile(request):
     u_p = u.userprofile
     context_dict = {}
     recipe_list = Recipe.objects.filter(user=request.user.username)
+
+    # userStuff = UserProfile.objects.get(user=request.user)
+    # context_dict['userStuff'] = userStuff
+
     userStuff = u_p
     context_dict['userStuff'] = userStuff
     context_dict['recipes'] = recipe_list
@@ -284,6 +288,10 @@ def user_profile(request):
     return render(request, 'fishydishy/user_profile.html', context_dict)
 
 def site_map(request):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f9a566f9e2561c3067b7cf24af627910982db37
     return render(request, 'fishydishy/site_map.html')
 
 
