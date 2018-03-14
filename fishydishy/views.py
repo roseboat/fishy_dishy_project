@@ -288,10 +288,6 @@ def user_profile(request):
     return render(request, 'fishydishy/user_profile.html', context_dict)
 
 def site_map(request):
-<<<<<<< HEAD
-=======
-
->>>>>>> 7f9a566f9e2561c3067b7cf24af627910982db37
     return render(request, 'fishydishy/site_map.html')
 
 
