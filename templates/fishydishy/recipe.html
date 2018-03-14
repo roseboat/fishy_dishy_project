@@ -63,6 +63,7 @@
 	{% endif %}
 
 <h3><b>Comments</b></h3><br>
+        <div class="results"></div>
 	{% if reviews %}
 	<ul>
 		{% for review in reviews %} 
@@ -83,4 +84,5 @@
 
 </div>
 
+<script src="{% static 'js/recipe_form.js' %}"></script>
 {% endblock %}
