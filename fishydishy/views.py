@@ -275,7 +275,7 @@ def user_login(request):
         else:
             # bad login details were provided. So we cant log the user in.
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'fishydishy/login.html', {'message':"Invalid login details supplied"})
 
     # The request is not a HTTP POST, so display the login form.
     # This scenerio would most likely be a HTTP GET.
