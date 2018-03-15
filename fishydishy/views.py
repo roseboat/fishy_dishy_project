@@ -87,10 +87,14 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     context_dict= {}
 
     try:
+        
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         reviews = Review.objects.filter(recipe=recipe).order_by('-date_posted')
         scoreAvg = Review.objects.filter(recipe=recipe).aggregate(Avg('rating'))['rating__avg']
-        scoreRange = range(1, int(scoreAvg)+1)
+        if scoreAvg is None:
+            scoreRange = range(0,0)
+        else:
+            scoreRange = range(1, int(scoreAvg)+1)
         form = CommentForm()
 
         context_dict['reviews'] = reviews
