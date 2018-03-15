@@ -58,7 +58,7 @@
 
         <center>
             <h1>Comments...</h1><br><br>
-
+            <div class="comment_section">
             {% if reviews %}
 
 
@@ -72,7 +72,7 @@
                     {% else %}
                     <p id="No_comments">Nobody has commented on this recipe yet.</p>
                     {% endif %}
-                       </center> </div>
+                       </div> </center> </div>
                     </div>
                     <br><br>
 
@@ -102,5 +102,7 @@
 
     </div>
 </div></div></div>
+
+<script type="text/javascript" src="{% static 'js/recipe_form.js' %}"></script>
 
 {% endblock %}
