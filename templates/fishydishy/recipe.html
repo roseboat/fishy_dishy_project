@@ -7,6 +7,18 @@
 
 {% block body_block %}
 
+<div class="header">
+    <center><img src="{% static 'images/fishydishypageheader.jpg' %}" alt="Fishy Dishy Header" /></center>
+</div>
+<div class="row">
+    <div class="col-lg-12" style="padding: 15px;"></div>
+</div>
+<div class="row">
+    <div class="col-lg-2" style="padding: 15px;">
+    </div>
+    <div class="col-lg-8" style="padding: 15px;">
+
+
 <div class="row">
     <div class="col-lg-12" style="padding: 15px;"></div>
     <h1>{{ recipe.name }} {% if reviews %} {% for i in scoreRange %} &#9734; {% endfor %} {% endif %}</h1>
@@ -88,6 +100,6 @@
         </center>
 
     </div>
-</div>
+</div></div></div>
 
 {% endblock %}
