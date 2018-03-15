@@ -113,6 +113,8 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
 )
 
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
 LOGIN_URL = '/fishydishy/login/' #changed for user authentication chapter 11
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

@@ -111,7 +111,6 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
                 a.user = request.user
                 a.save()
 
-
                 info_dict = {"comment": a.comment, "user": request.user.username, "date": a.date_posted.strftime('%B %d, %Y, %I:%M %p')}
                 #info_dict = form.cleaned_data
                 #username = request.user.username
@@ -287,7 +286,7 @@ def user_login(request):
 @login_required
 def user_profile(request):
     u = User.objects.get(id=1)
-    u_p = u.userprofile
+    u_p  = u.user_profile
     context_dict = {}
     recipe_list = Recipe.objects.filter(user=request.user.username)
 
