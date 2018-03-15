@@ -42,6 +42,7 @@
             <div class="containter recipe {{ recipe.fish }}">
 
                 <p>{{ recipe.description }}</p><br>
+                <p><b>Servings:</b><i> {{ recipe.serves }}</i></p>
                 <p><b>Cooking time:</b><i> {{ recipe.time }} minutes</i></p>
                 <p><b>Fish used:</b> <i> {{ recipe.fish }}</i></p><br><br>
 
@@ -51,17 +52,16 @@
             </div>
         </div>
     </div>
-</div><br><br>
+</div>
+        <br><br>
 
-<div class="row">
-    <div class="col-lg-12" style="padding: 15px;">
+        <div class="row">
+            <div class="col-lg-12" style="padding: 15px;">
 
-        <center>
-            <h1>Comments...</h1><br><br>
-            <div class="comment_section">
-            {% if reviews %}
-
-
+                <center>
+                    <h1>Comments...</h1><br><br>
+                    <div class="comment_section">
+                        {% if reviews %}
 
                         {% for review in reviews %}
 
@@ -69,39 +69,40 @@
                         <p style="color:#2e9fb5;"><b> - {{ review.user }}</b><br></p>
                         <p style="color:#C7C6CB; font-size: medium"><i>{{ review.date_posted }}</i><br></p>
                         {% endfor %}
-                    {% else %}
-                    <p id="No_comments">Nobody has commented on this recipe yet.</p>
-                    {% endif %}
-                       </div> </center> </div>
+                        {% else %}
+                        <p id="No_comments">Nobody has commented on this recipe yet.</p>
+                        {% endif %}
+                        <br><br>
+
+
                     </div>
-                    <br><br>
+                </center>
+                {% if user.is_authenticated %}
+                <center>
+                    <h1>Leave a Comment...</h1>
 
-            {% if user.is_authenticated %}
+                    <form id="review_form" method="post" action="/fishydishy/recipe/{{ recipe.slug }}/">
+                        {% csrf_token %}
+                        {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                        {{ hidden.errors }}
+                        {% endfor %}
+                        {% for field in form.visible_fields %}
+                        {{ field.errors }}
+                        {{ field.help_text }}<br>
+                        {{ field }}<br><br>
+                        {% endfor %}
 
-            <h1>Leave a Comment...</h1>
+                        <input type="submit" name="submit" value="Post Comment" class="btn"/><br><br>
+                    </form>
 
-            <form id="review_form" method="post" action="/fishydishy/recipe/{{ recipe.slug }}/">
-                {% csrf_token %}
-                {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-                {{ hidden.errors }}
-                {% endfor %}
-                {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}<br>
-                {{ field }}<br><br>
-                {% endfor %}
-
-                <input type="submit" name="submit" value="Post Comment" class="btn"/><br><br>
-            </form>
-
-            {% else %}
-            {% endif %}
-
-        </center>
-
+                    {% else %}
+                    {% endif %}
+                </center>
+            </div>
+        </div>
     </div>
-</div></div></div>
+</div>
 
 <script type="text/javascript" src="{% static 'js/recipe_form.js' %}"></script>
 
