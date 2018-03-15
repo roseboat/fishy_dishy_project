@@ -224,6 +224,7 @@ def register(request):
             # Update our variable to indicate that the template
             # registration was successful
             registered = True
+
         else:
             # invalid form or forms- mistakes or something else?
             # print problems to terminal.
@@ -267,7 +268,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in
                 # We'll send the user back to the homepage
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('user_profile'))
             else:
                 # An inactive account was used - no logging in
                 return HttpResponse("Your Fishy Dishy account is disabled.")
