@@ -62,7 +62,29 @@ def populate():
          "description": "Atlantic halibut can grow up to 8ft long and 4ft wide, is the largest and longest lived of all flatfish, is heavily overfished and listed as an Endangered species so avoid eating! Farmed Atlantic or wild-caught Pacific halibut from the Northeast Pacific and Northwest Atlantic and certified to the Marine Stewardship Council (MSC) standard for responsible fishing are more sustainable options. ",
          "image": "static/fish_images/halibut.jpg",
          "area": "North East Atlantic"
+         },
+        {"name": "Salmon",
+         "type": "oily_fish",
+         "sustainability": 3,
+         "description": "Salmon is an oily fish rich in Omega 3. It's a good source of Vitamin D, phosphorous and calcium. Fresh salmon may be baked, grilled or poached. It is also canned, pickled (gravadlax) or smoked. It's also used as a substitute for sushi and in sashimi. Generally stocks of wild Atlantic salmon are depleted. There may be several reasons for this. Factors include: marine mortality, linked to ocean climate and productivity; pollution; environmental changes; aquaculture; freshwater habitat deterioration; and impediments to migration routes. Due to their migratory behaviour it is difficult to effectively manage individual populations. ICES scientists recommend that fishing for salmon only takes place in rivers where stocks are at full reproductive capacity or above conservation limits. Avoid eating wild-caught salmon from rivers below these limits.",
+         "image": "static/fish_images/salmon.jpg",
+         "area": "Varies according to species, but mainly located in the North East Atlantic"
+         },
+        {"name": "Whitebait",
+         "type": "oily_fish",
+         "sustainability": 4,
+         "description": "Whitebait are tiny, immature, silvery members of the herring group that are typically deep-fried to serve. They are widely thought to be baby herring and are usually sold frozen. The term whitebait is used widely throughout the world, referring to small, usually marine, fishes. It has been reported that whitebait available in the UK is made up mostly of young sprats from the Baltic Sea, but depending on the source, these may be mixed with the young of shad, herrings, sticklebacks, gobies and shrimps.",
+         "image": "static/fish_images/whitebait.jpg",
+         "area": "North East Atlantic"
+         },
+        {"name": "Cod",
+         "type": "white_fish",
+         "sustainability": 3,
+         "description": "The most popular cuts are steaks and fillets which can be poached, grilled or baked. It's easy and quick to cook and is traditionally served with parsley sauce and lemon wedges and of course, chips. Cod roe and milt or sperm is also eaten. Cod belongs to a family of fish known as gadoids, which includes species such as haddock, pollack, pouting and ling. The fish is brown to green with spots on the dorsal side with a distinctive lateral line, and a small 'bib' or barbel under its chin which is used to look for food.Cod produce millions of eggs in winter and spring in February to April. ",
+         "image": "static/fish_images/cod.jpg",
+         "area": "North East Atlantic, Baltic Sea"
          }
+
     ]
 
     recipe = [
@@ -75,6 +97,36 @@ def populate():
         "time": 20,
         "serves": 4,
         "image": "recipe_images/fishtacos.jpg"
+        },
+        {
+            "name": "Thai Salmon Fishcakes",
+            "description": "Combining the fresh flavours of salmon with the zing of Thai spices, these fish cakes from Thai Taste not only look beautiful but taste amazing too.",
+            "ingredients": "450g (1lb) skinless fish fillets (salmon, haddock, etc) cut into chunks, 4 spring onions finely sliced, 1 red chilli, deseeded and finely chopped, 2 tbsp Thai Taste Red Curry Paste, 2 tbsp fresh coriander leaves, 1 tbsp Thai Taste Palm Sugar, 1 tsp Thai Taste Fish Sauce, 1 tbsp fresh lime juice, 50g (2oz) fine green beans, finely sliced, 1 tbsp Thai Taste Rice Bran Oil, for frying",
+            "method": "1. Place the fish chunks, spring onions, chilli, curry paste, coriander, palm sugar, fish sauce, lime juice and a pinch of salt in a food processor and blend until finely minced. 2. Transfer to a bowl and stir in the sliced green beans. 3. Divide the mixture into 16 pieces, roll each one into a ball and then flatten into discs. 4. Transfer the fish cakes to a plate, cover with cling film and place in the fridge for 30 minutes to 1 hour to firm up. 5. Heat the oil in a large frying pan and when very hot fry the fish cakes for about 1-2 minute each side, until golden brown and cooked through. Lift out and drain on kitchen paper, then serve with a selection of dipping sauces and a wedge of lime. Garnish with spring onions.",
+            "fish": "Salmon",
+            "time": 40,
+            "serves": 4,
+            "image": "recipe_images/fishcakes.jpg"
+        },
+        {
+            "name": "Classic Fried Whitebait and Aioli",
+            "description": "The prototypical fish taco originated in Baja California, Mexico, and the preparation referred to in this country as “Baja-style” is similar to what you might find on the Mexican peninsula. It usually involves deep-fried white-fleshed fish, shredded cabbage, and a creamy white sauce.",
+            "ingredients": "1 pound tiny whole fish, such as blue anchovies, 1 tablespoon salt (finely ground), 1 cup flour (all-purpose), 1 to 2 cups oil for frying, 4 to 8 lemon wedges",
+            "method": "Pick through your fish to look for any that are not pristine. You are looking for ones where the bellies are torn open. This is from enzymes within the fish breaking it down. Toss these and use only those that look nice, smell a bit like cucumbers (not like nasty fish) and that have clear eyes. Mix the salt and flour well. Pour the oil into a cast-iron frying pan or other suitable pan and heat it to 350 F over medium heat. Dust the fish in the seasoned flour and then shake off the excess. Fry in batches, stirring them so they don't stick together, for 2 to 3 minutes. Drain on a fine-meshed rack or paper towels. If you are making a lot of them, heat the oven to warm and place the fish in the oven until you are ready to serve since it is important that you serve whitebait toasty hot.",
+            "fish": "Whitebait",
+            "time": 15,
+            "serves": 4,
+            "image": "recipe_images/friedwhitebait.jpg"
+        },
+        {
+            "name": "Roast Brill with Puy Lentils & Shiitake Mushrooms",
+            "description": "Dare we say...a brill-iant dish for a dinner party, using firm-textured brill and nutty puy lentils.",
+            "ingredients": "250g puy lentils, 2 shallots, 4 tbsp olive oil, 140g shiitake mushrooms, 250g pack cherry or plum tomatoes, 2 tbsp capers, 150ml white wine, 4 x brill (or any other white fish like cod) fillets, skinned - about 140-175g/5-6oz each, 1 small lemon, 1 small bunch of flat-leaf parsley, 140g baby spinach",
+            "method": "Heat oven to 200C/fan oven 180C/gas mark 6. Tip the lentils into a pan, and cover with cold water. Bring to the boil and cook for 15-20 mins until they are tender. Drain and keep to one side. Fry the shallots in half the oil in a shallow roasting tray on top of the hob, until softened. Increase the heat and add the mushrooms. Cook for a couple of minutes, until they are colouring around the edges. Remove the tray from the heat, then stir in the cooked lentils, halved tomatoes, capers and wine. Sit the fish on the lentils then top with a couple of slices of lemon and drizzle over the remaining oil. Season everything with flaked sea salt and freshly ground black pepper. Roast for 15 mins – until the fish is cooked through and beginning to go golden on top. Gently lift fish from the tray. Stir the parsley and spinach into lentils, until the spinach starts to wilt. Spoon onto 4 plates, sit the fish on top and serve.",
+            "fish": "Brill",
+            "time": 50,
+            "serves": 4,
+            "image": "recipe_images/brilldish.jpg"
         }
     ]
 
