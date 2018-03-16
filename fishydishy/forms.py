@@ -11,6 +11,9 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 class UserProfileForm(forms.ModelForm):
+    website = forms.URLField(help_text="Enter the name of your site")
+    picture = forms.ImageField(help_text="Upload a Profile Picture")
+
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
@@ -25,12 +28,12 @@ class RecipeForm(forms.ModelForm):
     description = forms.CharField(max_length=2000, help_text="Description", widget=forms.Textarea(attrs={'cols': 60, 'rows': 3}))
     ingredients = forms.CharField(max_length=5000, help_text="Enter your ingredients", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
     method = forms.CharField(max_length=5000, help_text="Enter your method", widget=forms.Textarea(attrs={'cols': 60, 'rows': 5}))
-    fish = forms.ModelChoiceField(queryset=Fish.objects.all(),to_field_name="name", initial=0, help_text="Which fish does it use?") 
+    fish = forms.ModelChoiceField(queryset=Fish.objects.all(),to_field_name="name", initial=0, help_text="Which fish does it use?")
     serves = forms.IntegerField(help_text="How many servings?", min_value=1, max_value=10)
     time = forms.IntegerField(help_text="How long will it take? (mins)", min_value=1, max_value=999)
     image = forms.ImageField(help_text="Upload an Image of Your Dish")
     #user = forms.CharField(widget=forms.HiddenInput())
-    
+
     class Meta:
         model = Recipe
         fields = ('name', 'description', 'ingredients', 'method', 'fish', 'serves', 'time', 'image')
