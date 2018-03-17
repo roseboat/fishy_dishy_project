@@ -7,46 +7,46 @@ Contact
 
 {% block body_block %}
 <div class="header">
-		<center><img src="{% static "images/fishydishypageheader.jpg" %}" alt="Fishy Dishy Header" /></center>
-	</div>
+    <center><img src="{% static 'images/fishydishypageheader.jpg' %}" alt="Fishy Dishy Header" /></center>
+</div>
 <div class="row">
-		<div class="col-lg-12" style="padding: 15px;"></div>
-	</div>
-	<div class="row">
-		<div class="col-lg-2" style="padding: 15px;">
-	</div>
-	<div class="col-lg-8" style="padding: 15px;">
-
-
-<center>
-    <h1>Contact Us!</h1>
-    <div class="infoarea">
-        <p>
-            We are a small team of students at the University of Glasgow <br/>
-            If you'd like to contact us please use the form below to send an email.<br><br>
-        </p>
+    <div class="col-lg-12" style="padding: 15px;"></div>
+</div>
+<div class="row">
+    <div class="col-lg-2" style="padding: 15px;">
     </div>
-    <div class="feedback">
-        <form id="contact_form" method="post" action="/fishydishy/contact/">
+    <div class="col-lg-8" style="padding: 15px;">
 
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-            {{ hidden.errors }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}<br>
-            {{ field }}<br><br>
-            {% endfor %}
 
-            <input type="submit" class="btn" name="Send!" value="Send!"/>
-        </form>
-        <br><br>
-        </div>
-</center>
+        <center>
+            <h1>Contact Us!</h1>
+            <div class="infoarea">
+                <p>
+                    We are a small team of students at the University of Glasgow <br/>
+                    If you'd like to contact us please use the form below to send an email.<br><br>
+                </p>
+            </div>
+            <div class="feedback">
+                <form id="contact_form" method="post" action="/fishydishy/contact/">
 
-    </div></div>
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                    {{ hidden.errors }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}<br>
+                    {{ field }}<br><br>
+                    {% endfor %}
 
+                    <input type="submit" class="btn" name="Send!" value="Send!"/>
+                </form>
+                <br><br>
+            </div>
+        </center>
+    </div>
+</div>
+<br><br><br><br>
 
 {% endblock %}

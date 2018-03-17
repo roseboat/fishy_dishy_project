@@ -87,7 +87,7 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     context_dict= {}
 
     try:
-        
+
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         reviews = Review.objects.filter(recipe=recipe).order_by('-date_posted')
         scoreAvg = Review.objects.filter(recipe=recipe).aggregate(Avg('rating'))['rating__avg']
@@ -101,10 +101,10 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
 
         if request.method == 'POST':
             # user posted the form
-            
+
             form.recipe = recipe
             form = CommentForm(request.POST)
-            
+
             if form.is_valid():
                 a = form.save(commit=False)
                 a.recipe=Recipe.objects.get(slug=recipe_name_slug)
@@ -132,14 +132,14 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
 
 def search(request):
     context_dict= {}
-    if request.method == 'GET': # this will be GET now      
+    if request.method == 'GET': # this will be GET now
         target =  request.GET.get('search') # do some research what it does
         print(target, 'PRRIIIIIIIIIIIIIIIIIIIIIIIIIIIIIINT')
         try:
             recipeSearch = Recipe.objects.filter(description__icontains=target) | Recipe.objects.filter(name__icontains=target) | Recipe.objects.filter(fish__name__startswith=target) # filter returns a list so you might consider skip except part
             fishSearch = Fish.objects.filter(name__icontains=target) | Fish.objects.filter(description__icontains=target) | Fish.objects.filter(fishType__icontains=target)
             context_dict['recipeSearch'] = recipeSearch
-            context_dict['fishSearch'] = fishSearch           
+            context_dict['fishSearch'] = fishSearch
         except Recipe.DoesNotExist:
             print(error)
         return render(request,"fishydishy/search.html",context_dict)
@@ -154,9 +154,9 @@ def add_recipe(request, *args, **kwargs):
     form = RecipeForm()
     print(request.user)
 
-    
+
     # HTTP POST
-    if request.method == 'POST': 
+    if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
 
         print(form.errors.as_data())
@@ -167,11 +167,11 @@ def add_recipe(request, *args, **kwargs):
         if form.is_valid():
             # save new cate to DB
             recipe.save()
-            
+
             # could give a confirmation message
             # but recent category is added on index page
             # and direct user back to index page
-            
+
             return index(request)
         else:
             print(form.errors)
@@ -274,7 +274,7 @@ def user_login(request):
         else:
             # bad login details were provided. So we cant log the user in.
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'fishydishy/login.html', {'message':"Invalid login details supplied"})
 
     # The request is not a HTTP POST, so display the login form.
     # This scenerio would most likely be a HTTP GET.
@@ -283,19 +283,15 @@ def user_login(request):
         # blank dictionary object...
         return render(request, 'fishydishy/login.html', {})
 
-
 @login_required
 def user_profile(request):
-    profile = UserProfile.object.get(id=1)
+
+    u_p = UserProfile.objects.get(user=request.user)
 
     context_dict = {}
     recipe_list = Recipe.objects.filter(user=request.user.username)
 
-    # userStuff = UserProfile.objects.get(user=request.user)
-    # context_dict['userStuff'] = userStuff
-
-    # userStuff = u_p
-    context_dict['userStuff'] = profile
+    context_dict['userStuff'] = u_p
     context_dict['recipes'] = recipe_list
 
     return render(request, 'fishydishy/user_profile.html', context_dict)
@@ -312,7 +308,6 @@ def user_logout(request):
     logout(request)
     # Take the user back to the homepage
     return HttpResponseRedirect(reverse('index'))
-
 
 # A helper method
 def get_server_side_cookie(request, cookie, default_val=None):
