@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from fishydishy import views
 
+# setting up url patterns to be used
 urlpatterns = [
 	url(r'^$', views.index, name='index'),
     url(r'^about/$', views.about, name='about'),
@@ -10,6 +11,7 @@ urlpatterns = [
     url(r'^recipes/$', views.recipes, name='recipes'),
     url(r'^search/$', views.search, name='search'),
 
+    # uses slug to get individual pages for recipes
     url(r'^recipe/(?P<recipe_name_slug>[\w\-]+)/$',
         views.show_recipe,
         name='show_recipe'),
