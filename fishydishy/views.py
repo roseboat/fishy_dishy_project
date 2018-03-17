@@ -101,7 +101,6 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
                 a.user = request.user
                 a.save()
 
-
                 info_dict = {"comment": a.comment, "user": request.user.username, "date": a.date_posted.strftime('%B %d, %Y, %I:%M %p')}
                 return HttpResponse(json.dumps(info_dict), content_type="application/json")
 
@@ -224,17 +223,16 @@ def user_login(request):
         # blank dictionary object...
         return render(request, 'fishydishy/login.html', {})
 
-
 @login_required
 def user_profile(request):
     context_dict = {}
+
 
     # Gets the user's profile object
     u_p = UserProfile.objects.get(user=request.user)
 
     # Gets the recipes created by the user
     recipe_list = Recipe.objects.filter(user=request.user.username)
-
     context_dict['userStuff'] = u_p
     context_dict['recipes'] = recipe_list
 
