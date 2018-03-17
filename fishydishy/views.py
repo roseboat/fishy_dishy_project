@@ -33,10 +33,8 @@ def index(request):
     return response
 
 def about(request):
-    context_dict = {}
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
-    response = render(request, 'fishydishy/about.html', context=context_dict)
+
+    response = render(request, 'fishydishy/about.html')
     return response
 
 
