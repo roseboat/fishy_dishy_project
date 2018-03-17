@@ -27,9 +27,6 @@ def index(request):
 
     context_dict = {'recipes': recipe_list}
 
-
-    context_dict['visits'] = request.session['visits']
-
     # Obtain our respnse object early so we can add cookie information
     response = render(request, 'fishydishy/index.html', context=context_dict)
 
