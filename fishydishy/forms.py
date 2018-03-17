@@ -13,12 +13,12 @@ class UserForm(forms.ModelForm):
 
 # Additional form takes a website and picture from the user for use in their user profile
 class UserProfileForm(forms.ModelForm):
-    website = forms.URLField(help_text="Enter the name of your site")
+    # website = forms.URLField(help_text="Enter the name of your site", blank=True)
     picture = forms.ImageField(help_text="Upload a Profile Picture")
 
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('picture',)
 
 # Form for uploading a recipe to the website
 class RecipeForm(forms.ModelForm):

@@ -30,21 +30,18 @@ User Profile
                         <img src="{{ MEDIA_URL }}{{ userStuff.picture }}"
                              alt="Picture of {{ user.username}}"
                              style="border-radius: 50%; width:250px; height:250px;"/>
-
-
                         <br><br><br>
-                        <p><b>Website: </b><br>{{ userStuff.website }}</p><br>
                     </center>
                 </div>
 
                 <div class="col-lg-8" style="padding: 15px;">
                     <center><h2>Your Recipes...</h2><br>
                         {% if recipes %}
-                        {% for e in recipes %}
                         <ul>
-                            <li><a href="/fishydishy/recipe/{{ e.slug }}/"><h3>{{ e.name }}</h3></a></li>
-                        </ul>
+                        {% for e in recipes %}
+                            <h3><li><a href="/fishydishy/recipe/{{ e.slug }}/">{{ e.name }}</a></li></h3>
                         {% endfor %}
+                            </ul>
                         {% else %}
                         You have no recipes yet. Click <a href="{% url 'add_recipe' %}">here</a> to upload one!
                         {% endif %}
