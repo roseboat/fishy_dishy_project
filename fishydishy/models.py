@@ -17,7 +17,7 @@ class Fish(models.Model):
 
 class Recipe(models.Model):
     
-    user = models.CharField(max_length=128, null=True)
+    user = models.CharField(max_length=128, default = "Admin")
     def __unicode__(self):
         return self.name
     

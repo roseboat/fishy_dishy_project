@@ -87,7 +87,6 @@ def show_recipe(request, recipe_name_slug, *args, **kwargs):
     context_dict= {}
 
     try:
-
         recipe = Recipe.objects.get(slug=recipe_name_slug)
         reviews = Review.objects.filter(recipe=recipe).order_by('-date_posted')
         scoreAvg = Review.objects.filter(recipe=recipe).aggregate(Avg('rating'))['rating__avg']

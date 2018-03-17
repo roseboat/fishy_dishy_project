@@ -96,7 +96,8 @@ def populate():
         "fish": "Halibut",
         "time": 20,
         "serves": 4,
-        "image": "recipe_images/fishtacos.jpg"
+        "image": "recipe_images/fishtacos.jpg",
+        "user": "Admin"
         },
         {
             "name": "Thai Salmon Fishcakes",
@@ -106,7 +107,8 @@ def populate():
             "fish": "Salmon",
             "time": 40,
             "serves": 4,
-            "image": "recipe_images/fishcakes.jpg"
+            "image": "recipe_images/fishcakes.jpg",
+            "user": "Admin"
         },
         {
             "name": "Classic Fried Whitebait and Aioli",
@@ -116,7 +118,8 @@ def populate():
             "fish": "Whitebait",
             "time": 15,
             "serves": 4,
-            "image": "recipe_images/friedwhitebait.jpg"
+            "image": "recipe_images/friedwhitebait.jpg",
+            "user": "Admin"
         },
         {
             "name": "Roast Brill with Puy Lentils & Shiitake Mushrooms",
@@ -126,7 +129,9 @@ def populate():
             "fish": "Brill",
             "time": 50,
             "serves": 4,
-            "image": "recipe_images/brilldish.jpg"
+            "image": "recipe_images/brilldish.jpg",
+            "user": "Admin"
+
         }
     ]
 
@@ -136,7 +141,7 @@ def populate():
 
 
     for item in recipe:
-        r = add_recipe(item["name"], item["description"], item["ingredients"], item["method"], get_fish(item["fish"]), item["time"], item["serves"], item["image"])
+        r = add_recipe(item["name"], item["description"], item["ingredients"], item["method"], get_fish(item["fish"]), item["time"], item["serves"], item["image"], item["user"])
         print(format(str(r)))
 
 def add_fish(name, type, sustainability, description, image, area):
@@ -148,8 +153,8 @@ def get_fish(name):
     return fish
 
 
-def add_recipe(name, description, ingredients, method, fish, time, serves, image):
-    r = Recipe.objects.get_or_create(name = name, description = description, ingredients = ingredients, method = method, fish = fish, time = time, serves = serves, image = image)
+def add_recipe(name, description, ingredients, method, fish, time, serves, image, user):
+    r = Recipe.objects.get_or_create(name = name, description = description, ingredients = ingredients, method = method, fish = fish, time = time, serves = serves, image = image, user=user)
     return r
 
 if __name__ == '__main__':
