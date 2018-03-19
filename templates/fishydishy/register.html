@@ -20,11 +20,11 @@ Registration
 
 
             <h1>Register for Fishy Dishy!</h1><br><br>
-            {% if registered %}
-            <strong>Thank you for Registering!</strong><br>
-            <a href="{% url 'index' %}">Return to the Fishy Dishy homepage.</a><br/>
+            {% if registered %}<center>
+            <strong>Thank you for Registering!</strong><br><br>
+            <a href="{% url 'index' %}">Return to the Fishy Dishy homepage.</a><br/><br>
             <a href="{% url 'login' %}">Login Here!</a>
-            {% else %}
+            </center>{% else %}
 
             <form id="user_form" method="post" action="{% url 'register' %}"
                   enctype="multipart/form-data">

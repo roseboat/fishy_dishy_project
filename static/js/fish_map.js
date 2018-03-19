@@ -109,6 +109,5 @@ $(document).ready(function (){
     getLocation();
     $(".btn").click(function () {
         var query = $("#address").val();
-        alert(query);
     })
 });
